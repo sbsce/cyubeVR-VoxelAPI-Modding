@@ -1,8 +1,10 @@
-This is the official repository for the cyubeVR Voxel API, an easy way to create blocks with custom behavior in cyubeVR, requiring very little setup from you, and requiring no knowledge of UE4.
+This is the official repository for the cyubeVR VoxelAPI, an easy way to programmatically interact with the voxel world in cyubeVR, requiring very little setup from you. This requires no knowledge of UE4 or any other game engine.
+
+You only need some to know very basic programming to use this. So if you have ever done any programming in your life, you will be able to understand it. The programming language used is C++, but you do not need any C++ knowledge for this - if you have used any C/C#/Python/Java/Javascript/PHP/Go/Swift, that will suffice.
 
 *(maybe put a few nice GIFs here of what can be done with this)*
 
-The way this works is that there are several `Event_` functions automatically called by the game for any loaded VoxelAPI mod. You put in your own code in one (or multiple) of those `Event_` functions, and you are able to call functions interacting with the game, like `SetBlock` or `GetBlock`. 
+The way the cyubeVR VoxelAPI works is that there are several `Event_` functions automatically called by the game for any loaded VoxelAPI mod. You put in your own code in one (or multiple) of those `Event_` functions, and you are able to call functions interacting with the game, like `SetBlock` or `GetBlock`. 
 
 These are the `Event_` functions currently available:
 
