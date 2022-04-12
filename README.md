@@ -14,7 +14,7 @@ In the extracted folder, go into the folder `ProjectFolder`. Then double click t
 
 For this, you do need to have Visual Studio 2022 installed. It's a free software. If you have not yet installed, [simply CLICK HERE and download and install it.](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
 
-If you have it correctly installed, double-clicking the Code.sln will show you this screen:
+If you have it correctly installed, double-clicking the `Code.sln` will show you this screen:
 
 ![TutorialVSScreen](https://user-images.githubusercontent.com/38058738/162878542-485f6720-2978-4e6f-aaa4-f6019590f265.png)
 
