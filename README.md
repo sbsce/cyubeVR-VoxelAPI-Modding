@@ -52,7 +52,7 @@ This will spawn a hint text saying "I am a block and I was placed!" above the bl
 
 To get your custom code into the the game, just press F7 while you are in Visual Studio. This will generate a new file in the `ProjectFolder`. That new file is called `Code.dll`. It contains the compiled code you just wrote! 
 
-Then go into the `[GameInstallDirectory]/cyubeVR/Mods/APIMods` folder and create a new folder there, called `MyGreatMod__V1`. You can call that folder anything you want, just make sure the name has has `__V1` at the end. 
+Then go into the `[GameInstallDirectory]/cyubeVR/Mods/APIMods` folder and create a new folder there, called `MyGreatMod__V1`. You can call that folder anything you want, just make sure the name has `__V1` at the end. 
 
 Inside of that newly created folder, paste in your `Code.dll` file. That's all!
 
