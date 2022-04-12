@@ -24,7 +24,7 @@ There are two source files you need to edit and look at. They are called "Mod.cp
 
 ![TutorialOpenFiles](https://user-images.githubusercontent.com/38058738/162879058-d19ee0a9-8638-4104-80b6-e54172c52fa6.gif)
 
-# Step 5: Now Write your code in the Mod.cpp
+# Step 5: Write your code in the Mod.cpp
 
 This was all that was required to set this up. The only file you ever have to edit is the `Mod.cpp` file. The `GameAPI.h` is useful as a read-only file to see which functions you can call to interact with the game.
 
