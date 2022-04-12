@@ -48,7 +48,7 @@ std::vector<CoordinateInBlocks> GetAllCoordinatesInBox(CoordinateInBlocks At, Co
 std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);
 ```
 
-More functions can be added at request, so if there is something you would like to have access to that is not yet available, feel free to request it in the [official cyubeVR Discord](https://discord.gg/cyubeVR) or open an issue here on this repository.
+More functions can be added at request, so if there is something you would like to have access to that is not yet available, feel free to request it in the #Modding channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR) or open an issue here on this repository.
 
 # How to start using this:
 
