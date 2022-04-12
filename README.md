@@ -6,7 +6,7 @@ You only need some to know very basic programming to use this. So if you have ev
 
 The way the cyubeVR VoxelAPI works is that there are several `Event_` functions automatically called by the game for any loaded VoxelAPI mod. You put in your own code in one (or multiple) of those `Event_` functions, and you are able to call functions interacting with the game, like `SetBlock` or `GetBlock`. 
 
-These are the `Event_` functions currently available:
+These are the `Event_` functions currently available to be used:
 
 ```cpp
 Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID);
@@ -18,7 +18,7 @@ Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, std::wstring
 Event_Tick();
 ```
 
-These are the functions currently available to interact with the game:
+These are the functions currently available for you to call to interact with the game:
 
 ```cpp
 void Log(const std::wstring& String);
@@ -48,7 +48,9 @@ std::vector<CoordinateInBlocks> GetAllCoordinatesInBox(CoordinateInBlocks At, Co
 std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);
 ```
 
-More functions can be added at request, so if there is something you would like to have access to that is not yet available, feel free to request it in the #Modding channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR) or open an issue here on this repository.
+More functions to interact with the game can be added at request, so if there is something you would like to have access to that is not yet available, feel free to request it in the #Modding channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR) or open an issue here on this repository.
+
+Of course, you also have access to the whole C/C++ standard library and any other C/C++ library you might want to include in your code.
 
 # How to start using this:
 
