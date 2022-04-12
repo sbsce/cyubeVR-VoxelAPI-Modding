@@ -30,7 +30,7 @@ This was all that was required to set this up. The only file you ever have to ed
 
 The `Mod.cpp` file contains some variables and functions. You don't need to add any new variables or functions to the file - simply put in the correct UniqueID into the variable at the top, and then write some code in one of the existing `Event_` functions.
 
-For example, let's say you want to create a custom block that spawns a hint text when it is placed. First, [create the custom block using the normal procedure for creating custom blocks for cyubeVR](https://steamcommunity.com/app/619500/discussions/3/1640917625019543783/). Then fill in the `UniqueID` variable at the top of `Mod.cpp` with the UniqueID of your block. If your block has the UniqueID `82323470`, it has to look like this:
+For example, let's say you want to create a custom block that spawns a hint text when it is placed. First, [create the custom block using the normal procedure for creating custom blocks for cyubeVR](https://steamcommunity.com/app/619500/discussions/3/1640917625019543783/). Then fill in the `ThisModUniqueIDs` variable at the top of `Mod.cpp` with the UniqueID of your block. If your block has the UniqueID `82323470`, it has to look like this:
 
 ```cpp
 UniqueID ThisModUniqueIDs[] = { 82323470 }; // All the UniqueIDs this mod manages. Functions like Event_BlockPlaced are only called for blocks of IDs mentioned here. 
