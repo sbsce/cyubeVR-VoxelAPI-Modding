@@ -20,7 +20,7 @@ If you have it correctly installed, double-clicking the `Code.sln` will show you
 
 # Step 4: Open the two relevant files
 
-There are two source files you need to edit and look at. They are called "Mod.cpp" and "GameAPI.h". You can open them like this:
+There are two source files you need to edit and look at. They are called `Mod.cpp` and `GameAPI.h`. You can open them like this:
 
 ![TutorialOpenFiles](https://user-images.githubusercontent.com/38058738/162879058-d19ee0a9-8638-4104-80b6-e54172c52fa6.gif)
 
