@@ -1,6 +1,54 @@
-This is the official repository for the cyubeVR Voxel API, an easy way to create blocks with custom behavior in cyubeVR.
+This is the official repository for the cyubeVR Voxel API, an easy way to create blocks with custom behavior in cyubeVR, requiring very little setup from you, and requiring no knowledge of UE4.
 
-How to start using this:
+*(maybe put a few nice GIFs here of what can be done with this)*
+
+The way this works is that there are several `Event_` functions automatically called by the game for any loaded VoxelAPI mod. You put in your own code in one (or multiple) of those `Event_` functions, and you are able to call functions interacting with the game, like `SetBlock` or `GetBlock`. 
+
+These are the `Event_` functions currently available:
+
+```cpp
+Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID);
+
+Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID);
+
+Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, std::wstring ToolName);
+
+Event_Tick();
+```
+
+These are the functions currently available to interact with the game:
+
+```cpp
+void Log(const std::wstring& String);
+
+BlockInfo GetBlock(CoordinateInBlocks At);
+
+bool SetBlock(CoordinateInBlocks At, EBlockType NativeType);
+
+bool SetBlock(CoordinateInBlocks At, UniqueID CustomBlockID);
+
+bool SetBlock(CoordinateInBlocks At, BlockInfo BlockType);
+
+void SpawnHintText(CoordinateInCentimeters At, const std::wstring& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
+
+CoordinateInCentimeters GetPlayerLocation();
+
+void SetPlayerLocation(CoordinateInCentimeters To);
+```
+
+And these are some convenience functions currently available to be called:
+
+```cpp
+template<uint64_t TrueOneInN> bool GetRandomBool();
+
+std::vector<CoordinateInBlocks> GetAllCoordinatesInBox(CoordinateInBlocks At, CoordinateInBlocks BoxExtent;
+
+std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);
+```
+
+More functions can be added at request, so if there is something you would like to have access to that is not yet available, feel free to request it in the [official cyubeVR Discord](https://discord.gg/cyubeVR) or open an issue here on this repository.
+
+# How to start using this:
 
 # Step 1: Click the "Download ZIP" download button here in GitHub
 
