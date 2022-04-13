@@ -1,8 +1,18 @@
+# cyubeVR VoxelAPI Modding
+
 This is the official repository for the cyubeVR VoxelAPI, an easy way to programmatically interact with the voxel world in cyubeVR, requiring very little setup from you. It requires no knowledge of UE4 or any other game engine. One of the most possible applications of this is creating "Generator Blocks" - custom blocks that, when placed in the game, procedurally generate structures like a house, or a tree made of blocks, or maybe a whole Titanic replica if you want to!
 
 You only need some to know very basic programming to use this. If you have ever done any programming in your life, you will be able to understand it. The programming language used is C++, but you do not need any C++ knowledge for this - if you have used any C/C#/Python/Java/Javascript/PHP/Go/Swift, that will suffice, you will quickly get used to the Syntax of this. It is designed to be as easy to use as possible. If you have any questions about anything, you will quickly get help in the #Modding channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR).
 
-*(maybe put a few nice GIFs here of what can be done with this)*
+---------------------------
+
+Here is an example of what you might do with this. A block that, when placed, procedurally generates a simple, randomly sized house:
+
+![PlaceHouseBlock](https://user-images.githubusercontent.com/38058738/163169898-d87b6653-a6c4-4b51-aff0-0f065be19cc2.gif)
+
+(Both the source code, and the compiled mod ready to be put into your game, for that example is in the `Examples` folder, called `SimpleHouseGenerator__V1`.)
+
+---------------------------
 
 The way the cyubeVR VoxelAPI works is that there are several `Event_` functions automatically called by the game for any loaded VoxelAPI mod. You put in your own code in one (or multiple) of those `Event_` functions, and you are able to call functions interacting with the game, like `SetBlock` or `GetBlock`. 
 
