@@ -53,11 +53,18 @@ using namespace ModAPI;
 	void SetPlayerLocation(CoordinateInCentimeters To);
 
 /*
-*	Returns a random bool with a certain chance to be TRUE. This function is very fast.
+*	Returns a random bool with a certain chance to be TRUE. This function is very fast (~5 CPU cycles).
 *
 *	Example for returning TRUE on average every 10th time:										GetRandomBool<10>();
 */
 	template<uint64_t TrueOneInN> bool GetRandomBool();
+
+/*
+*	Returns a random int value between MIN and MAX (inclusive). This function is very fast (~5 CPU cycles).
+*
+*	Example for returning a random int between 0 and 5:											GetRandomInt<0, 5>();
+*/
+	template<int32_t Min, int32_t Max> int32_t GetRandomInt();
 
 
 	// Returns an array of all coordinates in a certain box extent around a specific coordinate

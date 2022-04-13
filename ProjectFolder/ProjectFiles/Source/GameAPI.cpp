@@ -50,15 +50,15 @@ CoordinateInCentimeters GetPlayerLocation()
 std::vector<CoordinateInBlocks> GetAllCoordinatesInBox(CoordinateInBlocks At, CoordinateInBlocks BoxExtent)
 {
 	std::vector<CoordinateInBlocks> ReturnCoordinates;
-	
+
 	for (int64_t x = -BoxExtent.X; x < BoxExtent.X; x++) {
 		for (int64_t y = -BoxExtent.Y; y < BoxExtent.Y; y++) {
 			for (int16_t z = -BoxExtent.Z; z < BoxExtent.Z; z++) {
 
 				CoordinateInBlocks Offset = CoordinateInBlocks(x, y, z);
 
-				if ( ((int32_t(At.Z) + int32_t(Offset.Z)) >= 0) && ((int32_t(At.Z) + int32_t(Offset.Z)) <= 800)) {
-					ReturnCoordinates.push_back(At + Offset);				
+				if (((int32_t(At.Z) + int32_t(Offset.Z)) >= 0) && ((int32_t(At.Z) + int32_t(Offset.Z)) <= 800)) {
+					ReturnCoordinates.push_back(At + Offset);
 				}
 			}
 		}
@@ -87,6 +87,11 @@ std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At,
 	}
 
 	return ReturnCoordinates;
+}
+
+template<class T>
+constexpr auto absolute(T const& x) {
+	return x < 0 ? -x : x;
 }
 
 static __forceinline uint64_t rotl(const uint64_t x, int k) {
@@ -118,15 +123,17 @@ bool GetRandomBool()
 }
 
 
-int main() {
-	for (int i = 0; i < 10; i++) {
-		std::cout << GetRandomBool<2>() << std::endl;
-	}
+template<int32_t Min, int32_t Max>
+int32_t GetRandomInt()
+{
+	static constexpr uint32_t TotalSpan = Max - Min;
+	static constexpr uint32_t DivideBy = UINT32_MAX / (TotalSpan + 1);
 
-	//for (CoordinateInBlocks C : GetAllCoordinatesInBoxExtent(CoordinateInBlocks(100, 100, 100), CoordinateInBlocks(5, 5, 5))) {
-	for (CoordinateInBlocks C : GetAllCoordinatesInRadius(CoordinateInBlocks(100, 100, 100), 5)) {
-		std::wcout << C.ToString() << std::endl;
-	}
+	return int32_t(uint32_t(xoroshiro128p()) / DivideBy) + Min;
+}
 
-	return 0;
+int main()
+{
+
+
 }
