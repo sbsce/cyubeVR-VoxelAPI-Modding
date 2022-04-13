@@ -1,6 +1,6 @@
-This is the official repository for the cyubeVR VoxelAPI, an easy way to programmatically interact with the voxel world in cyubeVR, requiring very little setup from you. This requires no knowledge of UE4 or any other game engine.
+This is the official repository for the cyubeVR VoxelAPI, an easy way to programmatically interact with the voxel world in cyubeVR, requiring very little setup from you. It requires no knowledge of UE4 or any other game engine. One of the most possible applications of this is creating "Generator Blocks" - custom blocks that, when placed in the game, procedurally generate structures like a house, or a tree made of blocks, or maybe a whole Titanic replica if you want to!
 
-You only need some to know very basic programming to use this. So if you have ever done any programming in your life, you will be able to understand it. The programming language used is C++, but you do not need any C++ knowledge for this - if you have used any C/C#/Python/Java/Javascript/PHP/Go/Swift, that will suffice.
+You only need some to know very basic programming to use this. If you have ever done any programming in your life, you will be able to understand it. The programming language used is C++, but you do not need any C++ knowledge for this - if you have used any C/C#/Python/Java/Javascript/PHP/Go/Swift, that will suffice. This is designed to be as easy to use as possible.
 
 *(maybe put a few nice GIFs here of what can be done with this)*
 
@@ -42,6 +42,8 @@ And these are some convenience functions currently available to be called:
 
 ```cpp
 template<uint64_t TrueOneInN> bool GetRandomBool();
+
+template<int32_t Min, int32_t Max> int32_t GetRandomInt();
 
 std::vector<CoordinateInBlocks> GetAllCoordinatesInBox(CoordinateInBlocks At, CoordinateInBlocks BoxExtent;
 
