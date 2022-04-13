@@ -10,7 +10,7 @@ Here is an example of what you might do with this. A block that, when placed, pr
 
 ![PlaceHouseBlock](https://user-images.githubusercontent.com/38058738/163169898-d87b6653-a6c4-4b51-aff0-0f065be19cc2.gif)
 
-(Both the source code, and the compiled mod ready to be put into your game, for that example is in the `Examples` folder, called `Simple House Generator`.)
+(Both the source code, and the compiled mod ready to be put into your game, for that example is in the `Examples` folder, called `SimpleHouseGenerator__V1`.)
 
 ---------------------------
 
