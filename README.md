@@ -78,7 +78,7 @@ Of course, you also have access to the whole C/C++ standard library and any othe
 
 In the extracted folder, go into the folder `ProjectFolder`. Then double click the `Code.sln` file.
 
-For this, you do need to have Visual Studio 2022 installed. It's a free software. If you have not yet installed, [simply CLICK HERE and download and install it.](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
+For this, you do need to have Visual Studio 2022 installed. It's a free software. If you have not yet installed, [simply CLICK HERE and download and install it.](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false). During installation, when it asks you what "Workloads" should be installed, select "Desktop development with C++".
 
 If you have it correctly installed, double-clicking the `Code.sln` will show you this screen:
 
