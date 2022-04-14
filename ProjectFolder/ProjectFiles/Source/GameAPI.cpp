@@ -126,8 +126,10 @@ bool GetRandomBool()
 template<int32_t Min, int32_t Max>
 int32_t GetRandomInt()
 {
-	static constexpr uint32_t TotalSpan = Max - Min;
+	static constexpr uint32_t TotalSpan = int64_t(Max) - int64_t(Min);
 	static constexpr uint32_t DivideBy = UINT32_MAX / (TotalSpan + 1);
+
+	if constexpr (TotalSpan == UINT32_MAX) return xoroshiro128p();
 
 	return int32_t(uint32_t(xoroshiro128p()) / DivideBy) + Min;
 }
