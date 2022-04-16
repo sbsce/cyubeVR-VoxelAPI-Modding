@@ -41,7 +41,7 @@ const uint32_t Internals::GetModUniqueIDsNum()
 
 const void Internals::GetModUniqueIDs(UniqueID* ArrayIn)
 {
-	*ArrayIn = *ThisModUniqueIDs;
+	memcpy(ArrayIn, ThisModUniqueIDs, sizeof(ThisModUniqueIDs));
 }
 
 const float Internals::GetTickRate()
@@ -49,14 +49,14 @@ const float Internals::GetTickRate()
 	return TickRate;
 }
 
-const void Internals::E_Event_BlockPlaced(const CoordinateInBlocks& At, const UniqueID& CustomBlockID)
+const void Internals::E_Event_BlockPlaced(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const bool& Moved)
 {
-	Event_BlockPlaced(At, CustomBlockID);
+	Event_BlockPlaced(At, CustomBlockID, Moved);
 }
 
-const void Internals::E_Event_BlockDestroyed(const CoordinateInBlocks& At, const UniqueID& CustomBlockID)
+const void Internals::E_Event_BlockDestroyed(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const bool& Moved)
 {
-	Event_BlockDestroyed(At, CustomBlockID);
+	Event_BlockDestroyed(At, CustomBlockID, Moved);
 }
 
 const void Internals::E_Event_BlockHitByTool(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const wchar_t* ToolName)
@@ -72,4 +72,9 @@ const void Internals::E_Event_Tick()
 const void Internals::E_Event_OnLoad()
 {
 	Event_OnLoad();
+}
+
+const void Internals::E_Event_OnExit()
+{
+	Event_OnExit();
 }

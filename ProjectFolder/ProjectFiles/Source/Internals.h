@@ -13,29 +13,31 @@ using namespace ModAPI;
 namespace Internals
 {
 
-	extern "C"
-	{
-		_declspec(dllexport) void Init();
+    extern "C"
+    {
+        _declspec(dllexport) void Init();
 
-		_declspec(dllexport) const char* GetName();
+        _declspec(dllexport) const char* GetName();
 
-		_declspec(dllexport) const uint32_t GetModUniqueIDsNum();
-		_declspec(dllexport) const void GetModUniqueIDs(UniqueID* ArrayIn);
+        _declspec(dllexport) const uint32_t GetModUniqueIDsNum();
+        _declspec(dllexport) const void GetModUniqueIDs(UniqueID* ArrayIn);
 
-		_declspec(dllexport) const float GetTickRate();
+        _declspec(dllexport) const float GetTickRate();
 
-        _declspec(dllexport) const void E_Event_BlockPlaced(const CoordinateInBlocks& At, const UniqueID& CustomBlockID);
+        _declspec(dllexport) const void E_Event_BlockPlaced(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const bool& Moved);
 
-        _declspec(dllexport) const void E_Event_BlockDestroyed(const CoordinateInBlocks& At, const UniqueID& CustomBlockID);
+        _declspec(dllexport) const void E_Event_BlockDestroyed(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const bool& Moved);
 
         _declspec(dllexport) const void E_Event_BlockHitByTool(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const wchar_t* ToolName);
 
-		_declspec(dllexport) const void E_Event_Tick();
+        _declspec(dllexport) const void E_Event_Tick();
 
-		_declspec(dllexport) const void E_Event_OnLoad();
-	}
+        _declspec(dllexport) const void E_Event_OnLoad();
 
-	HINSTANCE app;	
+        _declspec(dllexport) const void E_Event_OnExit();
+    }
+
+    HINSTANCE app;
 }
 
 

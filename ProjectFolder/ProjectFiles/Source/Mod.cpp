@@ -9,21 +9,23 @@ UniqueID ThisModUniqueIDs[] = { 0 }; // All the UniqueIDs this mod manages. Func
 float TickRate = 1;							 // Set how many times per second Event_Tick() is called. 0 means the Event_Tick() function is never called.
 
 /************************************************************* 
-//	Functions (Run automatically be the game, you can put any code you want into them)
+//	Functions (Run automatically by the game, you can put any code you want into them)
 *************************************************************/
 
 
 // Run every time a block is placed
-void Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID)
+void Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved)
 {
-
+	
 }
 
 
+
+
 // Run every time a block is destroyed
-void Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID)
+void Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved)
 {
-	
+
 }
 
 
@@ -53,12 +55,18 @@ void Event_Tick()
 }
 
 
+
 // Run once when the world is loaded
 void Event_OnLoad()
 {
 
 }
 
+// Run once when the world is exited
+void Event_OnExit()
+{
+	
+}
 
 /*******************************************************
 
