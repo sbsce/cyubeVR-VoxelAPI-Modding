@@ -28,6 +28,10 @@ Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID);
 Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, std::wstring ToolName);
 
 Event_Tick();
+
+Event_OnLoad();
+
+Event_OnExit();
 ```
 
 These are the functions currently available for you to call to interact with the game:
