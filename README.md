@@ -21,9 +21,9 @@ The way the cyubeVR VoxelAPI works is that there are several `Event_` functions 
 These are the `Event_` functions currently available to be used:
 
 ```cpp
-Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID);
+Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved);
 
-Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID);
+Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved);
 
 Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, std::wstring ToolName);
 
