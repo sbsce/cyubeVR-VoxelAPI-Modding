@@ -106,7 +106,17 @@ For example, let's say you want to create a custom block that spawns a hint text
 UniqueID ThisModUniqueIDs[] = { 82323470 }; // All the UniqueIDs this mod manages. Functions like Event_BlockPlaced are only called for blocks of IDs mentioned here. 
 ```
 
-Then look for the `Event_BlockPlaced` function in the `Mod.cpp`, and put in the code for spawning the hint text:
+Then look for the `Event_BlockPlaced` function in the `Mod.cpp`, which by default is empty:
+
+```cpp
+// Run every time a block is placed
+void Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID)
+{
+	
+}
+```
+
+and then put the code for spawning the hint text into it:
 
 ```cpp
 // Run every time a block is placed
