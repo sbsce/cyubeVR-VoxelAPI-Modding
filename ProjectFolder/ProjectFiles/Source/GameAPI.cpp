@@ -41,6 +41,11 @@ CoordinateInCentimeters GetPlayerLocation()
 	return InternalFunctions::I_GetPlayerLocation();
 }
 
+std::wstring GetWorldName()
+{
+	return std::wstring(InternalFunctions::I_GetWorldName());
+}
+
 
 /*******************************************************
 	Useful functions

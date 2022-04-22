@@ -45,12 +45,21 @@ using namespace ModAPI;
 */
 	void SpawnHintText(CoordinateInCentimeters At, const std::wstring& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
 
-	// Returns the current player location
+/*
+*	Returns the current player location
+*/
 	CoordinateInCentimeters GetPlayerLocation();
 
-	// Sets the player location. Be careful with this, if you set it to something far away, the only way for the player to ever get back to their base would
-	// probably be to kill themselves
+/*
+*	Sets the player location. Be careful with this, if you set it to something far away, the only way for the player to ever get back to their base would
+*	probably be to kill themselves
+*/
 	void SetPlayerLocation(CoordinateInCentimeters To);
+
+/*
+*	Get the name of the currently loaded world.
+*/
+	std::wstring GetWorldName();
 
 /*
 *	Returns a random bool with a certain chance to be TRUE. This function is very fast (~5 CPU cycles).

@@ -110,6 +110,12 @@ namespace ModAPI {
 		MAX_BLOCKTYPE
 	};
 
+	struct CoordinateInCentimetersC {
+		int64_t X;
+		int64_t Y;
+		uint16_t Z;
+	};
+
 	struct CoordinateInCentimeters;
 	struct CoordinateInBlocks;
 
@@ -131,12 +137,21 @@ namespace ModAPI {
 			return (X == i.X && Y == i.Y && Z == i.Z);
 		}
 
+		operator CoordinateInCentimetersC() { 
+			CoordinateInCentimetersC Value;
+			Value.X = X;
+			Value.Y = Y;
+			Value.Z = Z;
+			return Value;
+		}
+
 		std::wstring ToString() const {
 			return L"X=" + std::to_wstring(X) + L" Y=" + std::to_wstring(Y) + L" Z=" + std::to_wstring(Z);
 		}
 
 		constexpr CoordinateInCentimeters() : X(0), Y(0), Z(0) {}
 		constexpr CoordinateInCentimeters(int64_t X_, int64_t Y_, uint16_t Z_) : X(X_), Y(Y_), Z(Z_) {}
+		constexpr CoordinateInCentimeters(const CoordinateInCentimetersC C) : X(C.X), Y(C.Y), Z(C.Z) {};
 
 		constexpr CoordinateInCentimeters(CoordinateInBlocks CIB);
 
@@ -154,6 +169,14 @@ namespace ModAPI {
 
 		constexpr CoordinateInBlocks operator-(const CoordinateInBlocks i) const {
 			return CoordinateInBlocks(X - i.X, Y - i.Y, Z - i.Z);
+		}
+
+		constexpr CoordinateInCentimeters operator+(const CoordinateInCentimeters i) const {
+			return CoordinateInCentimeters(X, Y, Z) + i;
+		}
+
+		constexpr CoordinateInCentimeters operator-(const CoordinateInCentimeters i) const {
+			return CoordinateInCentimeters(X, Y, Z) - i;
 		}
 
 		constexpr bool operator==(const CoordinateInBlocks i) const {
@@ -179,6 +202,8 @@ namespace ModAPI {
 
 	constexpr CoordinateInBlocks::CoordinateInBlocks(const CoordinateInCentimeters CIM) : X(CIM.X / 50), Y(CIM.Y / 50), Z(CIM.Z / 50) {};
 
+
+
 	typedef uint32_t UniqueID;
 
 	struct BlockInfo 
@@ -200,6 +225,8 @@ namespace ModAPI {
 		UniqueID CustomBlockID;
 	};
 
+
+
 	typedef void (*Log_T)(const wchar_t* String);
 
 	typedef BlockInfoC (*GetBlock_T)(CoordinateInBlocks At);
@@ -208,7 +235,9 @@ namespace ModAPI {
 
 	typedef void (*SpawnHintText_T)(ModAPI::CoordinateInCentimeters At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical);
 	
-	typedef ModAPI::CoordinateInCentimeters (*GetPlayerLocation_T)();
+	typedef ModAPI::CoordinateInCentimetersC (*GetPlayerLocation_T)();
+
+	typedef const wchar_t* (*GetWorldName_T)();
 
 	namespace InternalFunctions {
 
@@ -221,6 +250,8 @@ namespace ModAPI {
 		inline SpawnHintText_T I_SpawnHintText;
 
 		inline GetPlayerLocation_T I_GetPlayerLocation;
+
+		inline GetWorldName_T I_GetWorldName;
 
 	}
 

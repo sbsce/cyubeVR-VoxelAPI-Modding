@@ -12,7 +12,6 @@ float TickRate = 1;							 // Set how many times per second Event_Tick() is call
 //	Functions (Run automatically by the game, you can put any code you want into them)
 *************************************************************/
 
-
 // Run every time a block is placed
 void Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved)
 {
