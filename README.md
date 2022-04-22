@@ -112,7 +112,7 @@ Then look for the `Event_BlockPlaced` function in the `Mod.cpp`, which by defaul
 
 ```cpp
 // Run every time a block is placed
-void Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID)
+void Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved)
 {
 	
 }
@@ -122,7 +122,7 @@ and then put the code for spawning the hint text into it:
 
 ```cpp
 // Run every time a block is placed
-void Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID)
+void Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved)
 {
 	SpawnHintText(At + CoordinateInBlocks(0, 0, 1), L"I am a block and I was placed!", 5);
 }
