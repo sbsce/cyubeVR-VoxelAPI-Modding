@@ -52,6 +52,8 @@ void SpawnHintText(CoordinateInCentimeters At, const std::wstring& Text, float D
 CoordinateInCentimeters GetPlayerLocation();
 
 void SetPlayerLocation(CoordinateInCentimeters To);
+
+std::wstring GetWorldName();
 ```
 
 And these are some convenience functions currently available to be called:
