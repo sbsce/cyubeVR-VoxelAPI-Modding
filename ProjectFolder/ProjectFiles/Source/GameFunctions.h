@@ -172,11 +172,11 @@ namespace ModAPI {
 		}
 
 		constexpr CoordinateInCentimeters operator+(const CoordinateInCentimeters i) const {
-			return CoordinateInCentimeters(X, Y, Z) + i;
+			return CoordinateInCentimeters(*this) + i;
 		}
 
 		constexpr CoordinateInCentimeters operator-(const CoordinateInCentimeters i) const {
-			return CoordinateInCentimeters(X, Y, Z) - i;
+			return CoordinateInCentimeters(*this) - i;
 		}
 
 		constexpr bool operator==(const CoordinateInBlocks i) const {
