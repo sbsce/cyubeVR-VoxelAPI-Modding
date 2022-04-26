@@ -82,3 +82,18 @@ const void Internals::E_Event_OnExit()
 {
 	Event_OnExit();
 }
+
+const void Internals::E_Event_AnyBlockPlaced(const CoordinateInBlocks& At, const BlockInfoC& Type, const bool& Moved)
+{
+	Event_AnyBlockPlaced(At, *((BlockInfo*)&Type), Moved);
+}
+
+const void Internals::E_Event_AnyBlockDestroyed(const CoordinateInBlocks& At, const BlockInfoC& Type, const bool& Moved)
+{
+	Event_AnyBlockDestroyed(At, *((BlockInfo*)&Type), Moved);
+}
+
+const void Internals::E_Event_AnyBlockHitByTool(const CoordinateInBlocks& At, const BlockInfoC& Type, const wchar_t* ToolName)
+{
+	Event_AnyBlockHitByTool(At, *((BlockInfo*)&Type), ToolName);
+}

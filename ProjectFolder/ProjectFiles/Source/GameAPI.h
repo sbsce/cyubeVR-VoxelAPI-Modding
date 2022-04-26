@@ -51,12 +51,6 @@ using namespace ModAPI;
 	CoordinateInCentimeters GetPlayerLocation();
 
 /*
-*	Sets the player location. Be careful with this, if you set it to something far away, the only way for the player to ever get back to their base would
-*	probably be to kill themselves
-*/
-	void SetPlayerLocation(CoordinateInCentimeters To);
-
-/*
 *	Get the name of the currently loaded world.
 */
 	std::wstring GetWorldName();

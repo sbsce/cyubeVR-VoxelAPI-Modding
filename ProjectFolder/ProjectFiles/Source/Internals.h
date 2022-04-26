@@ -35,6 +35,13 @@ namespace Internals
 		_declspec(dllexport) const void E_Event_OnLoad();
         
         _declspec(dllexport) const void E_Event_OnExit();
+
+        _declspec(dllexport) const void E_Event_AnyBlockPlaced(const CoordinateInBlocks& At, const BlockInfoC& Type, const bool& Moved);
+
+        _declspec(dllexport) const void E_Event_AnyBlockDestroyed(const CoordinateInBlocks& At, const BlockInfoC& Type, const bool& Moved);
+
+        _declspec(dllexport) const void E_Event_AnyBlockHitByTool(const CoordinateInBlocks& At, const BlockInfoC& Type, const wchar_t* ToolName);
+
 	}
 
 	HINSTANCE app;	

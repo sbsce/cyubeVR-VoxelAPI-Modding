@@ -69,6 +69,31 @@ void Event_OnExit()
 
 /*******************************************************
 
+	Advanced functions
+
+*******************************************************/
+
+// Run every time any block (not part of the ThisModUniqueIDs) is placed by the player
+void Event_AnyBlockPlaced(CoordinateInBlocks At, BlockInfo Type, bool Moved)
+{
+
+}
+
+// Run every time any block (not part of the ThisModUniqueIDs) is destroyed by the player
+void Event_AnyBlockDestroyed(CoordinateInBlocks At, BlockInfo Type, bool Moved)
+{
+
+}
+
+// Run every time any block (not part of the ThisModUniqueIDs) is hit by a tool
+void Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, std::wstring ToolName)
+{
+
+}
+
+
+/*******************************************************
+
 	For all the available game functions you can call, look at the GameAPI.h file
 
 *******************************************************/
