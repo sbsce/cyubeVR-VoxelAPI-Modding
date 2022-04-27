@@ -24,6 +24,8 @@ void Internals::Init()
 
 	InternalFunctions::I_GetPlayerLocation = (GetPlayerLocation_T) GetProcAddress(app, "GetPlayerLocation");
 
+	InternalFunctions::I_GetPlayerViewDirection = (GetPlayerViewDirection_T) GetProcAddress(app, "GetPlayerViewDirection");
+
 	InternalFunctions::I_GetWorldName = (GetWorldName_T) GetProcAddress(app, "GetWorldName");
 
 	std::string ErrorString = GetLastErrorAsString();

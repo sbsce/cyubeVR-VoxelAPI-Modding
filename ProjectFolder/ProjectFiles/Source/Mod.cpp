@@ -29,7 +29,7 @@ void Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID, bool Mo
 
 
 // Run every time a block is hit by a tool
-void Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, std::wstring ToolName)
+void Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, wString ToolName)
 {
 
 	if (ToolName == L"T_Stick") {
@@ -73,20 +73,21 @@ void Event_OnExit()
 
 *******************************************************/
 
-// Run every time any block (not part of the ThisModUniqueIDs) is placed by the player
+
+// Run every time any block is placed by the player
 void Event_AnyBlockPlaced(CoordinateInBlocks At, BlockInfo Type, bool Moved)
 {
 
 }
 
-// Run every time any block (not part of the ThisModUniqueIDs) is destroyed by the player
+// Run every time any block is destroyed by the player
 void Event_AnyBlockDestroyed(CoordinateInBlocks At, BlockInfo Type, bool Moved)
 {
 
 }
 
-// Run every time any block (not part of the ThisModUniqueIDs) is hit by a tool
-void Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, std::wstring ToolName)
+// Run every time any block is hit by a tool
+void Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, wString ToolName)
 {
 
 }

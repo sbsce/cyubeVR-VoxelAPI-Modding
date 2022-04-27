@@ -1,5 +1,6 @@
 #pragma once
 #include "GameFunctions.h"
+typedef std::wstring wString;
 using namespace ModAPI;
 
 /*******************************************************
@@ -21,7 +22,7 @@ using namespace ModAPI;
 * 
 *	Example how you can call Log:																Log(L"Hi! This is text that will be logged");		
 */
-	void Log(const std::wstring& String);
+	void Log(const wString& String);
 
 /*
 *	Returns the block at the coordinate your specify. You can call this with either a CoordinateInBlocks or a CoordinateInCentimeters.
@@ -41,9 +42,13 @@ using namespace ModAPI;
 	bool SetBlock(CoordinateInBlocks At, BlockInfo BlockType);
 
 /*
-*	Spawn a hint text popup with the specified text at the specified coordinate.	
+*	Spawn a hint text popup with the specified text at the specified coordinate. Examples how you can call SpawnHintText:		
+* 
+*	Show a hint text saying "I am a hint text" at the coordinate At for 5 seconds:				SpawnHintText(At, L"I am a hint text", 5);	
+*	A hint text with a new line:																SpawnHintText(At, L"First Line\nSecond Line", 5);
+*	A hint text that prints the value of an int variable MyInt:									SpawnHintText(At, L"My number is: " + std::to_wstring(MyInt), 5);
 */
-	void SpawnHintText(CoordinateInCentimeters At, const std::wstring& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
+	void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
 
 /*
 *	Returns the current player location
@@ -51,9 +56,23 @@ using namespace ModAPI;
 	CoordinateInCentimeters GetPlayerLocation();
 
 /*
+*	Sets the player location. Be careful with this, if you set it to something far away, the only way for the player to ever get back to their base would
+*	probably be to kill themselves
+*/
+	void SetPlayerLocation(CoordinateInCentimeters To);
+
+
+/*
+*	Returns the current player view direction as a unit vector.
+*
+*	You can add a DirectionVectorInCentimeters (with arbitrary length) to a CoordinateInCentimeters to get a new CoordinateInCentimeters.
+*/
+	DirectionVectorInCentimeters GetPlayerViewDirection();
+
+/*
 *	Get the name of the currently loaded world.
 */
-	std::wstring GetWorldName();
+	wString GetWorldName();
 
 /*
 *	Returns a random bool with a certain chance to be TRUE. This function is very fast (~5 CPU cycles).

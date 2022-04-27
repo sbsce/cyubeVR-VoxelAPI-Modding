@@ -77,7 +77,7 @@ namespace ModAPI {
 		DyeRainbow,
 		FlowerRainbow,
 		DyeWhite,
-		Unused,
+		Unused6,
 		ModBlock,
 		CrystalBlock,
 		Crystal,
@@ -116,8 +116,15 @@ namespace ModAPI {
 		uint16_t Z;
 	};
 
+	struct DirectionVectorInCentimetersC {
+		float X;
+		float Y;
+		float Z;
+	};
+
 	struct CoordinateInCentimeters;
 	struct CoordinateInBlocks;
+	struct DirectionVectorInCentimeters;
 
 	struct CoordinateInCentimeters {
 
@@ -137,7 +144,8 @@ namespace ModAPI {
 			return (X == i.X && Y == i.Y && Z == i.Z);
 		}
 
-		operator CoordinateInCentimetersC() { 
+		operator CoordinateInCentimetersC()
+		{ 
 			CoordinateInCentimetersC Value;
 			Value.X = X;
 			Value.Y = Y;
@@ -198,10 +206,66 @@ namespace ModAPI {
 
 	};
 
+	struct DirectionVectorInCentimeters {
+
+		float X;
+		float Y;
+		float Z;
+
+		constexpr DirectionVectorInCentimeters operator+(const DirectionVectorInCentimeters i) const {
+			return DirectionVectorInCentimeters(X + i.X, Y + i.Y, Z + i.Z);
+		}
+
+		constexpr DirectionVectorInCentimeters operator-(const DirectionVectorInCentimeters i) const {
+			return DirectionVectorInCentimeters(X - i.X, Y - i.Y, Z - i.Z);
+		}
+
+		constexpr DirectionVectorInCentimeters operator*(const float Multiplier) const {
+			return DirectionVectorInCentimeters(X * Multiplier, Y * Multiplier, Z * Multiplier);
+		}
+
+		constexpr DirectionVectorInCentimeters operator*(const DirectionVectorInCentimeters i) const {
+			return DirectionVectorInCentimeters(X * i.X, Y * i.Y, Z * i.Z);
+		}
+
+		std::wstring ToString() const {
+			return L"X=" + std::to_wstring(X) + L" Y=" + std::to_wstring(Y) + L" Z=" + std::to_wstring(Z);
+		}
+
+		operator DirectionVectorInCentimetersC()
+		{
+			DirectionVectorInCentimetersC Value;
+			Value.X = X;
+			Value.Y = Y;
+			Value.Z = Z;
+			return Value;
+		}
+
+		operator CoordinateInCentimeters()
+		{
+			CoordinateInCentimeters Value;
+			Value.X = lround(X);
+			Value.Y = lround(Y);
+			Value.Z = (uint16_t) lround(Z);
+			return Value;
+		}
+
+		constexpr DirectionVectorInCentimeters() : X(0), Y(0), Z(0) {}
+		constexpr DirectionVectorInCentimeters(float X_, float Y_, float Z_) : X(X_), Y(Y_), Z(Z_) {}
+
+	};
+
+	constexpr int64_t round_custom(double x)
+	{
+		if (x < 0.0)
+			return (int64_t)(x - 0.5);
+		else
+			return (int64_t)(x + 0.5);
+	}
+
 	constexpr CoordinateInCentimeters::CoordinateInCentimeters(const CoordinateInBlocks CIB) : X(CIB.X * 50), Y(CIB.Y * 50), Z(CIB.Z * 50) {};
 
-	constexpr CoordinateInBlocks::CoordinateInBlocks(const CoordinateInCentimeters CIM) : X(CIM.X / 50), Y(CIM.Y / 50), Z(CIM.Z / 50) {};
-
+	constexpr CoordinateInBlocks::CoordinateInBlocks(const CoordinateInCentimeters CIM) : X(round_custom(double(CIM.X) / 50)), Y(round_custom(double(CIM.Y) / 50)), Z(int16_t(round_custom(double(CIM.Z) / 50))) {};
 
 
 	typedef uint32_t UniqueID;
@@ -237,6 +301,8 @@ namespace ModAPI {
 	
 	typedef ModAPI::CoordinateInCentimetersC (*GetPlayerLocation_T)();
 
+	typedef ModAPI::DirectionVectorInCentimetersC (*GetPlayerViewDirection_T)();
+
 	typedef const wchar_t* (*GetWorldName_T)();
 
 	namespace InternalFunctions {
@@ -250,6 +316,8 @@ namespace ModAPI {
 		inline SpawnHintText_T I_SpawnHintText;
 
 		inline GetPlayerLocation_T I_GetPlayerLocation;
+
+		inline GetPlayerViewDirection_T I_GetPlayerViewDirection;
 
 		inline GetWorldName_T I_GetWorldName;
 
