@@ -25,7 +25,13 @@ Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved);
 
 Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved);
 
-Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, std::wstring ToolName);
+Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, wString ToolName);
+
+Event_AnyBlockPlaced(CoordinateInBlocks At, BlockInfo Type, bool Moved);
+
+Event_AnyBlockDestroyed(CoordinateInBlocks At, BlockInfo Type, bool Moved);
+
+Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, wString ToolName);
 
 Event_Tick();
 
@@ -37,7 +43,7 @@ Event_OnExit();
 These are the functions currently available for you to call to interact with the game:
 
 ```cpp
-void Log(const std::wstring& String);
+void Log(const wString& String);
 
 BlockInfo GetBlock(CoordinateInBlocks At);
 
@@ -47,13 +53,13 @@ bool SetBlock(CoordinateInBlocks At, UniqueID CustomBlockID);
 
 bool SetBlock(CoordinateInBlocks At, BlockInfo BlockType);
 
-void SpawnHintText(CoordinateInCentimeters At, const std::wstring& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
+void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
 
 CoordinateInCentimeters GetPlayerLocation();
 
-void SetPlayerLocation(CoordinateInCentimeters To);
+DirectionVectorInCentimeters GetPlayerViewDirection();
 
-std::wstring GetWorldName();
+wString GetWorldName();
 ```
 
 And these are some convenience functions currently available to be called:
