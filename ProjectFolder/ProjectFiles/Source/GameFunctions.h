@@ -110,6 +110,18 @@ namespace ModAPI {
 		MAX_BLOCKTYPE
 	};
 
+	enum class ERotation : uint8_t
+	{
+		Right,
+		Left,
+		Forward,
+		Backward,
+		Up,
+		Down,
+
+		None
+	};
+
 	struct CoordinateInCentimetersC {
 		int64_t X;
 		int64_t Y;
@@ -270,38 +282,42 @@ namespace ModAPI {
 
 	typedef uint32_t UniqueID;
 
-	struct BlockInfo 
+	struct BlockInfo
 	{
 
 		EBlockType Type;
-		UniqueID CustomBlockID;
+		ERotation Rotation;			// Only used for torches
+		UniqueID CustomBlockID;		// Only used if the Type is EBlockType::ModBlock
 
-		constexpr BlockInfo() : Type(EBlockType::Invalid), CustomBlockID(0) {}
+		constexpr BlockInfo() : Type(EBlockType::Invalid), Rotation(ERotation::None), CustomBlockID(0) {}
 
-		constexpr BlockInfo(EBlockType Type_) : Type(Type_), CustomBlockID(0) {}
+		constexpr BlockInfo(EBlockType Type_) : Type(Type_), Rotation(ERotation::None), CustomBlockID(0) {}
 
-		constexpr BlockInfo(UniqueID CustomBlockID_) : Type(EBlockType::ModBlock), CustomBlockID(CustomBlockID_) {}
+		constexpr BlockInfo(EBlockType Type_, ERotation Rotation_) : Type(Type_), Rotation(Rotation_), CustomBlockID(0) {}
+
+		constexpr BlockInfo(UniqueID CustomBlockID_) : Type(EBlockType::ModBlock), Rotation(ERotation::None), CustomBlockID(CustomBlockID_) {}
+
+		constexpr BlockInfo(EBlockType Type_, ERotation Rotation_, UniqueID CustomBlockID_) : Type(Type_), Rotation(Rotation_), CustomBlockID(CustomBlockID_) {}
 
 	};
 
 	struct BlockInfoC {
 		EBlockType Type;
+		ERotation Rotation;
 		UniqueID CustomBlockID;
 	};
 
-
-
 	typedef void (*Log_T)(const wchar_t* String);
 
-	typedef BlockInfoC (*GetBlock_T)(CoordinateInBlocks At);
+	typedef BlockInfoC(*GetBlock_T)(CoordinateInBlocks At);
 
 	typedef bool (*SetBlock_T)(CoordinateInBlocks At, BlockInfo BlockType);
 
 	typedef void (*SpawnHintText_T)(ModAPI::CoordinateInCentimeters At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical);
-	
-	typedef ModAPI::CoordinateInCentimetersC (*GetPlayerLocation_T)();
 
-	typedef ModAPI::DirectionVectorInCentimetersC (*GetPlayerViewDirection_T)();
+	typedef ModAPI::CoordinateInCentimetersC(*GetPlayerLocation_T)();
+
+	typedef ModAPI::DirectionVectorInCentimetersC(*GetPlayerViewDirection_T)();
 
 	typedef const wchar_t* (*GetWorldName_T)();
 

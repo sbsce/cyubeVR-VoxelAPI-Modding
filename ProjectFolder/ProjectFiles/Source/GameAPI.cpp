@@ -30,6 +30,11 @@ bool SetBlock(CoordinateInBlocks At, EBlockType NativeType)
 	return SetBlock(At, BlockInfo(NativeType));
 }
 
+bool SetBlock(CoordinateInBlocks At, EBlockType NativeType, ERotation Rotation)
+{
+	return SetBlock(At, BlockInfo(NativeType, Rotation));
+}
+
 bool SetBlock(CoordinateInBlocks At, UniqueID CustomBlockID)
 {
 	return SetBlock(At, BlockInfo(CustomBlockID));

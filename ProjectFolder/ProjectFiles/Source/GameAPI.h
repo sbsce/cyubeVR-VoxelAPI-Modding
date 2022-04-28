@@ -36,8 +36,11 @@ using namespace ModAPI;
 *	Setting the block at coordinate 0, 0, 0 to be a custom block of the UniqueID 50000:			SetBlock(CoordinateInBlocks(0, 0, 0), 50000);
 *
 *	To delete a block, set it to the type EBlockType::Air
+* 
+*	The Rotation value is only necessary for torches. For all other types, you can ignore it.
 */
 	bool SetBlock(CoordinateInBlocks At, EBlockType NativeType);
+	bool SetBlock(CoordinateInBlocks At, EBlockType NativeType, ERotation Rotation);
 	bool SetBlock(CoordinateInBlocks At, UniqueID CustomBlockID);
 	bool SetBlock(CoordinateInBlocks At, BlockInfo BlockType);
 
