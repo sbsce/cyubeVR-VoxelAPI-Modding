@@ -141,10 +141,14 @@ bool GetRandomBool()
 template<int32_t Min, int32_t Max>
 int32_t GetRandomInt()
 {
-	static constexpr uint32_t TotalSpan = int64_t(Max) - int64_t(Min);
-	static constexpr uint32_t DivideBy = UINT32_MAX / (TotalSpan + 1);
+	static_assert(Max > Min, "Called GetRandomInt with Min larger than Max");
+	static_assert(Max != INT32_MAX, "GetRandomInt Max can't be INT32_MAX. Please reduce Max by at least one");
 
-	if constexpr (TotalSpan == UINT32_MAX) return xoroshiro128p();
+	static constexpr uint32_t TotalSpan = int64_t(Max) - int64_t(Min);
+	static constexpr uint32_t DivideBy = (UINT32_MAX / (TotalSpan + 1)) + 1;
+
+	if constexpr (TotalSpan == UINT32_MAX) return int32_t(xoroshiro128p());
+	if constexpr (Min == Max) return Min;
 
 	return int32_t(uint32_t(xoroshiro128p()) / DivideBy) + Min;
 }
