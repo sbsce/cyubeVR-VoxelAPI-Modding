@@ -91,4 +91,5 @@ using namespace ModAPI;
 	// Returns an array of all coordinates in a certain radius around a specific coordinate
 	std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);
 
+	// Returns the path where this mod is installed
 	wString GetThisModFolderPath();
