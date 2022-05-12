@@ -105,12 +105,38 @@ std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At,
 	return ReturnCoordinates;
 }
 
+#pragma warning(disable:6386)
+wString GetThisModFolderPath()
+{
+	wchar_t path[MAX_PATH];
+	HMODULE hm = NULL;
+
+	if (GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+		GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+		(LPCWSTR)&GetAllCoordinatesInRadius, &hm) == 0)
+	{
+		return std::wstring(L"Error");
+	}
+	if (GetModuleFileNameW(hm, path, sizeof(path)) == 0)
+	{
+		return std::wstring(L"Error");
+	}
+
+	std::wstring StringToReturn = std::wstring(path);
+	StringToReturn = StringToReturn.substr(0, StringToReturn.find_last_of(L"\\/"));
+
+	StringToReturn += L"\\";
+
+	return StringToReturn;
+}
+#pragma warning(default:6386)
+
 template<class T>
 constexpr auto absolute(T const& x) {
 	return x < 0 ? -x : x;
 }
 
-static __forceinline uint64_t rotl(const uint64_t x, int k) {
+constexpr static __forceinline uint64_t rotl(const uint64_t x, int k) {
 	return (x << k) | (x >> (64 - k));
 }
 

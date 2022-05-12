@@ -59,13 +59,6 @@ using namespace ModAPI;
 	CoordinateInCentimeters GetPlayerLocation();
 
 /*
-*	Sets the player location. Be careful with this, if you set it to something far away, the only way for the player to ever get back to their base would
-*	probably be to kill themselves
-*/
-	void SetPlayerLocation(CoordinateInCentimeters To);
-
-
-/*
 *	Returns the current player view direction as a unit vector.
 *
 *	You can add a DirectionVectorInCentimeters (with arbitrary length) to a CoordinateInCentimeters to get a new CoordinateInCentimeters.
@@ -97,3 +90,5 @@ using namespace ModAPI;
 
 	// Returns an array of all coordinates in a certain radius around a specific coordinate
 	std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);
+
+	wString GetThisModFolderPath();
