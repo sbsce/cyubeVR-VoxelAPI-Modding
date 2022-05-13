@@ -282,7 +282,7 @@ namespace ModAPI {
 
 	typedef uint32_t UniqueID;
 
-	struct BlockInfo
+	struct BlockInfo 
 	{
 
 		EBlockType Type;
@@ -307,35 +307,59 @@ namespace ModAPI {
 		UniqueID CustomBlockID;
 	};
 
+
+
 	typedef void (*Log_T)(const wchar_t* String);
 
-	typedef BlockInfoC(*GetBlock_T)(CoordinateInBlocks At);
+	typedef BlockInfoC (*GetBlock_T)(CoordinateInBlocks At);
 
 	typedef bool (*SetBlock_T)(CoordinateInBlocks At, BlockInfo BlockType);
 
 	typedef void (*SpawnHintText_T)(ModAPI::CoordinateInCentimeters At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical);
+	
+	typedef ModAPI::CoordinateInCentimetersC (*GetPlayerLocation_T)();
 
-	typedef ModAPI::CoordinateInCentimetersC(*GetPlayerLocation_T)();
+	typedef bool (*SetPlayerLocation_T)(ModAPI::CoordinateInCentimeters To);
 
-	typedef ModAPI::DirectionVectorInCentimetersC(*GetPlayerViewDirection_T)();
+	typedef ModAPI::DirectionVectorInCentimetersC (*GetPlayerViewDirection_T)();
+
+	typedef ModAPI::CoordinateInCentimetersC (*GetHandLocation_T)(bool LeftHand);
+
+	typedef ModAPI::CoordinateInCentimetersC (*GetIndexFingerTipLocation_T)(bool LeftHand);
 
 	typedef const wchar_t* (*GetWorldName_T)();
+
+	typedef float (*GetTimeOfDay_T)();
+
+
 
 	namespace InternalFunctions {
 
 		inline Log_T I_Log;
 
+
 		inline GetBlock_T I_GetBlock;
 
 		inline SetBlock_T I_SetBlock;
 
+
 		inline SpawnHintText_T I_SpawnHintText;
+
 
 		inline GetPlayerLocation_T I_GetPlayerLocation;
 
+		inline SetPlayerLocation_T I_SetPlayerLocation;
+
 		inline GetPlayerViewDirection_T I_GetPlayerViewDirection;
 
+		inline GetHandLocation_T I_GetHandLocation;
+
+		inline GetIndexFingerTipLocation_T I_GetIndexFingerTipLocation;
+
+
 		inline GetWorldName_T I_GetWorldName;
+
+		inline GetTimeOfDay_T I_GetTimeOfDay;
 
 	}
 
