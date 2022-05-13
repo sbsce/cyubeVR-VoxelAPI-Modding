@@ -57,9 +57,19 @@ void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float Durati
 
 CoordinateInCentimeters GetPlayerLocation();
 
+bool SetPlayerLocation(CoordinateInCentimeters To);
+
 DirectionVectorInCentimeters GetPlayerViewDirection();
 
+CoordinateInCentimeters GetHandLocation(bool LeftHand);
+
+CoordinateInCentimeters GetIndexFingerTipLocation(bool LeftHand);
+
 wString GetWorldName();
+
+float GetTimeOfDay();
+
+bool IsCurrentlyNight();
 ```
 
 And these are some convenience functions currently available to be called:
@@ -72,6 +82,8 @@ template<int32_t Min, int32_t Max> int32_t GetRandomInt();
 std::vector<CoordinateInBlocks> GetAllCoordinatesInBox(CoordinateInBlocks At, CoordinateInBlocks BoxExtent;
 
 std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);
+
+const wString& GetThisModFolderPath();
 ```
 
 More functions to interact with the game can be added at request, so if there is something you would like to have access to that is not yet available, feel free to request it in the #Modding channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR) or open an issue here on this repository.
