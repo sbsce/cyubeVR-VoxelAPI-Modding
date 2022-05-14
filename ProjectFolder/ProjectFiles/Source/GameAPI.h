@@ -54,15 +54,20 @@ using namespace ModAPI;
 	void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
 
 /*
-*	Returns the current player location
+*	Returns the current player location (feet location).
 */
 	CoordinateInCentimeters GetPlayerLocation();
 
 /*
-*	Sets the player location. Be careful with this, if you set it to something far away, the only way for the player to ever get back to their base would
-*	probably be to kill themselves
+*	Sets the player location (feet location). Be careful with this, if you set it to something far away, the only way for the player to ever get back to their base would
+*	probably be to kill themselves.
 */
 	bool SetPlayerLocation(CoordinateInCentimeters To);
+
+/*
+*	Returns the current player location (head location).
+*/
+	CoordinateInCentimeters GetPlayerLocationHead();
 
 /*
 *	Returns the current player view direction as a unit vector.
@@ -72,14 +77,29 @@ using namespace ModAPI;
 	DirectionVectorInCentimeters GetPlayerViewDirection();
 
 /*
-*	Returns the current location of the hand of the player
+*	Returns the current location of the hand of the player.
 */
 	CoordinateInCentimeters GetHandLocation(bool LeftHand);
 
 /*
-*	Returns the current location of the tip of the index finger of the player
+*	Returns the current location of the tip of the index finger of the player.
 */
 	CoordinateInCentimeters GetIndexFingerTipLocation(bool LeftHand);
+
+/*
+*	Spawn a block item (a small cube you can craft with etc).
+*/
+	void SpawnBlockItem(CoordinateInCentimeters At, BlockInfo Type);
+
+/*
+*	Add one or multiple items to the inventory. 
+*/
+	void AddToInventory(BlockInfo Type, int Amount);
+
+/*
+*	Remove one or multiple items from the inventory. 
+*/
+	void RemoveFromInventory(BlockInfo Type, int Amount);
 
 /*
 *	Get the name of the currently loaded world.
@@ -92,9 +112,16 @@ using namespace ModAPI;
 	float GetTimeOfDay();
 
 /*
+*	Set the current time of day. A float between 0 and 2400, same format as returned by GetTimeOfDay().
+*/
+	void SetTimeOfDay(float NewTime);
+
+/*
 *	A simple function to return if it's currently night in the world.
 */
 	bool IsCurrentlyNight();
+
+
 
 /*
 *	Returns a random bool with a certain chance to be TRUE. This function is very fast (~5 CPU cycles).

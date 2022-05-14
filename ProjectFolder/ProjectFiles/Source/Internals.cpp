@@ -26,14 +26,23 @@ void Internals::Init()
 
 	InternalFunctions::I_SetPlayerLocation = (SetPlayerLocation_T) GetProcAddress(app, "SetPlayerLocation");
 
+	InternalFunctions::I_GetPlayerLocationHead = (GetPlayerLocationHead_T)GetProcAddress(app, "GetPlayerLocationHead");
+
 	InternalFunctions::I_GetPlayerViewDirection = (GetPlayerViewDirection_T) GetProcAddress(app, "GetPlayerViewDirection");
 
 	InternalFunctions::I_GetHandLocation = (GetHandLocation_T) GetProcAddress(app, "GetHandLocation");
 	InternalFunctions::I_GetIndexFingerTipLocation = (GetIndexFingerTipLocation_T) GetProcAddress(app, "GetIndexFingerTipLocation");
 
+	InternalFunctions::I_SpawnBlockItem = (SpawnBlockItem_T) GetProcAddress(app, "SpawnBlockItem");
+
+	InternalFunctions::I_AddToInventory = (AddToInventory_T) GetProcAddress(app, "AddToInventory");
+	InternalFunctions::I_RemoveFromInventory = (RemoveFromInventory_T) GetProcAddress(app, "RemoveFromInventory");
+
 	InternalFunctions::I_GetWorldName = (GetWorldName_T) GetProcAddress(app, "GetWorldName");
 
 	InternalFunctions::I_GetTimeOfDay = (GetTimeOfDay_T) GetProcAddress(app, "GetTimeOfDay");
+
+	InternalFunctions::I_SetTimeOfDay = (SetTimeOfDay_T) GetProcAddress(app, "SetTimeOfDay");
 
 	std::string ErrorString = GetLastErrorAsString();
 

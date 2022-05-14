@@ -51,6 +51,11 @@ bool SetPlayerLocation(CoordinateInCentimeters To)
 	return InternalFunctions::I_SetPlayerLocation(To);
 }
 
+CoordinateInCentimeters GetPlayerLocationHead()
+{
+	return InternalFunctions::I_GetPlayerLocationHead();
+}
+
 DirectionVectorInCentimeters GetPlayerViewDirection()
 {
 	DirectionVectorInCentimetersC Type = InternalFunctions::I_GetPlayerViewDirection();
@@ -67,6 +72,21 @@ CoordinateInCentimeters GetIndexFingerTipLocation(bool LeftHand)
 	return InternalFunctions::I_GetIndexFingerTipLocation(LeftHand);
 }
 
+void SpawnBlockItem(CoordinateInCentimeters At, BlockInfo Type)
+{
+	return InternalFunctions::I_SpawnBlockItem(At, Type);
+}
+
+void AddToInventory(BlockInfo Type, int Amount)
+{
+	return InternalFunctions::I_AddToInventory(Type, Amount);
+}
+
+void RemoveFromInventory(BlockInfo Type, int Amount)
+{
+	return InternalFunctions::I_RemoveFromInventory(Type, Amount);
+}
+
 wString GetWorldName()
 {
 	return wString(InternalFunctions::I_GetWorldName());
@@ -75,6 +95,11 @@ wString GetWorldName()
 float GetTimeOfDay()
 {
 	return InternalFunctions::I_GetTimeOfDay();
+}
+
+void SetTimeOfDay(float NewTime)
+{
+	return InternalFunctions::I_SetTimeOfDay(NewTime);
 }
 
 bool IsCurrentlyNight()
