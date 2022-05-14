@@ -59,17 +59,27 @@ CoordinateInCentimeters GetPlayerLocation();
 
 bool SetPlayerLocation(CoordinateInCentimeters To);
 
+CoordinateInCentimeters GetPlayerLocationHead();
+
 DirectionVectorInCentimeters GetPlayerViewDirection();
 
 CoordinateInCentimeters GetHandLocation(bool LeftHand);
 
 CoordinateInCentimeters GetIndexFingerTipLocation(bool LeftHand);
 
+void SpawnBlockItem(CoordinateInCentimeters At, BlockInfo Type);
+
+void AddToInventory(BlockInfo Type, int Amount);
+
+void RemoveFromInventory(BlockInfo Type, int Amount);
+
 wString GetWorldName();
 
 float GetTimeOfDay();
 
 bool IsCurrentlyNight();
+
+void SetTimeOfDay(float NewTime);
 ```
 
 And these are some convenience functions currently available to be called:
