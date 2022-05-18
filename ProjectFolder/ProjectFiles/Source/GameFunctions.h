@@ -341,6 +341,11 @@ namespace ModAPI {
 	typedef void (*SetTimeOfDay_T)(float NewTime);
 
 
+	typedef void (*PlayHapticFeedbackOnHand_T)(bool LeftHand, float DurationSeconds, float Frequency, float Amplitude);
+
+	typedef void (*SpawnBPModActor_T)(ModAPI::CoordinateInCentimeters At, const wchar_t* ModName, const wchar_t* ActorName);
+
+
 	namespace InternalFunctions {
 
 		inline Log_T I_Log;
@@ -376,6 +381,10 @@ namespace ModAPI {
 		inline GetTimeOfDay_T I_GetTimeOfDay;
 
 		inline SetTimeOfDay_T I_SetTimeOfDay;
+
+		inline PlayHapticFeedbackOnHand_T I_PlayHapticFeedbackOnHand;
+
+		inline SpawnBPModActor_T I_SpawnBPModActor;
 
 	}
 

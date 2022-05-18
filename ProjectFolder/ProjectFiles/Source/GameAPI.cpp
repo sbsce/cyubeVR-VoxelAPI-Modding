@@ -108,6 +108,16 @@ bool IsCurrentlyNight()
 	return (Time < 600 || Time > 1800);
 }
 
+void PlayHapticFeedbackOnHand(bool LeftHand, float DurationSeconds, float Frequency, float Amplitude)
+{
+	return InternalFunctions::I_PlayHapticFeedbackOnHand(LeftHand, DurationSeconds, Frequency, Amplitude);
+}
+
+void SpawnBPModActor(CoordinateInCentimeters At, const wString& ModName, const wString& ActorName)
+{
+	return InternalFunctions::I_SpawnBPModActor(At, ModName.c_str(), ActorName.c_str());
+}
+
 
 /*******************************************************
 	Useful functions

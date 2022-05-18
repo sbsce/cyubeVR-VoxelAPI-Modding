@@ -121,6 +121,17 @@ using namespace ModAPI;
 */
 	bool IsCurrentlyNight();
 
+/*
+*	Play haptic feedback on one of the motion controllers.
+*/
+	void PlayHapticFeedbackOnHand(bool LeftHand, float DurationSeconds, float Frequency, float Amplitude);
+
+/*
+*	Spawn a UE4 BP Mod Actor. This makes it possible to spawn custom particle effects, sound effects, and really anything that UE4 can spawn.
+*
+*	To learn how to create such a UE4 BP Actor, take a look at this playlist: https://www.youtube.com/playlist?list=PL6kr-0TUTN58n8QrQoFVq4JI-HZj4eDbY
+*/
+	void SpawnBPModActor(CoordinateInCentimeters At, const wString& ModName, const wString& ActorName);
 
 
 /*

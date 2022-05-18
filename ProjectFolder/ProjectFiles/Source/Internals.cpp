@@ -44,6 +44,12 @@ void Internals::Init()
 
 	InternalFunctions::I_SetTimeOfDay = (SetTimeOfDay_T) GetProcAddress(app, "SetTimeOfDay");
 
+
+	InternalFunctions::I_PlayHapticFeedbackOnHand = (PlayHapticFeedbackOnHand_T) GetProcAddress(app, "PlayHapticFeedbackOnHand");
+
+	InternalFunctions::I_SpawnBPModActor = (SpawnBPModActor_T) GetProcAddress(app, "SpawnBPModActor");
+
+
 	std::string ErrorString = GetLastErrorAsString();
 
 	if (!InternalFunctions::I_Log) __debugbreak();
