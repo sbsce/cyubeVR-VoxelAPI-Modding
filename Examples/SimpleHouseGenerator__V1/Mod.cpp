@@ -100,7 +100,7 @@ void Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID, bool Mo
 
 
 // Run every time a block is hit by a tool
-void Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, std::wstring ToolName)
+void Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, wString ToolName)
 {
 
 	if (ToolName == L"T_Stick") {
@@ -124,16 +124,43 @@ void Event_Tick()
 
 }
 
+
+
 // Run once when the world is loaded
 void Event_OnLoad()
 {
-	Log(L"Now in OnLoad in this great Mod");
+
 }
 
 // Run once when the world is exited
 void Event_OnExit()
 {
 	
+}
+
+/*******************************************************
+
+	Advanced functions
+
+*******************************************************/
+
+
+// Run every time any block is placed by the player
+void Event_AnyBlockPlaced(CoordinateInBlocks At, BlockInfo Type, bool Moved)
+{
+
+}
+
+// Run every time any block is destroyed by the player
+void Event_AnyBlockDestroyed(CoordinateInBlocks At, BlockInfo Type, bool Moved)
+{
+
+}
+
+// Run every time any block is hit by a tool
+void Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, wString ToolName)
+{
+
 }
 
 
