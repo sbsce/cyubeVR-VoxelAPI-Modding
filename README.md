@@ -82,6 +82,10 @@ float GetTimeOfDay();
 bool IsCurrentlyNight();
 
 void SetTimeOfDay(float NewTime);
+
+void PlayHapticFeedbackOnHand(bool LeftHand, float DurationSeconds, float Frequency, float Amplitude);
+
+void SpawnBPModActor(CoordinateInCentimeters At, const wString& ModName, const wString& ActorName);
 ```
 
 And these are some convenience functions currently available to be called:
