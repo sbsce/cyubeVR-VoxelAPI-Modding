@@ -2,6 +2,8 @@
 
 This is the official repository for the cyubeVR VoxelAPI, an easy way to programmatically interact with the voxel world in cyubeVR, requiring very little setup from you. It requires no knowledge of UE4 or any other game engine (if you instead want to do UE4 Blueprint Modding of cyubeVR, that is also natively supported, go [here](https://www.youtube.com/watch?v=MvVLacyToX0&list=PL6kr-0TUTN58n8QrQoFVq4JI-HZj4eDbY&index=1)). 
 
+(To be able to use this before Update 51 is released, you need to use the beta build of cyubeVR. If you don't yet know how to switch to the beta build, look at the pinned message in the #beta-build-patch-notes channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR).)
+
 One of the possible applications of this VoxelAPI Modding is creating "Generator Blocks" - custom blocks that, when placed in the game, procedurally generate structures like a house, or a tree made of blocks, or maybe a whole Titanic replica if you want to! Another example would be using this system to spawn custom ore blocks into the ground, by simply replacing some stone blocks in the ground with your own custom ore block.
 
 You only need to know some very basic programming to use this. If you have ever done any programming in your life, you will be able to understand it. The programming language used is C++, but you do not need any C++ knowledge for this - if you have used any C/C#/Python/Java/Javascript/PHP/Go/Swift, that will suffice, you will quickly get used to the Syntax of this. It is designed to be as easy to use as possible. If you have any questions about anything, you will quickly get help in the #Modding channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR).
