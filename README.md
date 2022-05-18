@@ -6,7 +6,7 @@ This is the official repository for the cyubeVR VoxelAPI, an easy way to program
 
 One of the possible applications of this VoxelAPI Modding is creating "Generator Blocks" - custom blocks that, when placed in the game, procedurally generate structures like a house, or a tree made of blocks, or maybe a whole Titanic replica if you want to! Another example would be using this system to spawn custom ore blocks into the ground, by simply replacing some stone blocks in the ground with your own custom ore block.
 
-You only need to know some very basic programming to use this. If you have ever done any programming in your life, you will be able to understand it. The programming language used is C++, but you do not need any C++ knowledge for this - if you have used any C/C#/Python/Java/Javascript/PHP/Go/Swift, that will suffice, you will quickly get used to the Syntax of this. It is designed to be as easy to use as possible. If you have any questions about anything, you will quickly get help in the #Modding channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR).
+You only need to know some very basic programming to use this. If you have ever done any programming in your life, you will be able to understand it. The programming language used is C++, but you do not need any C++ knowledge for this - if you have used any C/C#/Python/Java/Javascript/PHP/Go/Swift, that will suffice, you will quickly get used to the Syntax of this. It is designed to be as easy to use as possible. If you have any questions about anything, you will quickly get help in the #voxel-api channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR).
 
 ---------------------------
 
