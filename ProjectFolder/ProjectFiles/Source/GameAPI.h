@@ -133,6 +133,17 @@ using namespace ModAPI;
 */
 	void SpawnBPModActor(CoordinateInCentimeters At, const wString& ModName, const wString& ActorName);
 
+/*
+*	Save a persistent string to the save files of the currently active world, that you can later load using LoadModDataString.
+*/
+	void SaveModDataString(wString ModName, wString StringIn);
+
+/*
+*	Load a string you previously saved using SaveModDataString.
+*/
+	bool LoadModDataString(wString ModName, wString& StringOut);
+
+
 
 /*
 *	Returns a random bool with a certain chance to be TRUE. This function is very fast (~5 CPU cycles).

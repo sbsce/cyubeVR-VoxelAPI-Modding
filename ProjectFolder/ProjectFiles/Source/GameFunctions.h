@@ -346,6 +346,10 @@ namespace ModAPI {
 	typedef void (*SpawnBPModActor_T)(ModAPI::CoordinateInCentimeters At, const wchar_t* ModName, const wchar_t* ActorName);
 
 
+	typedef void (*SaveModDataString_T)(const wchar_t* ModName, const wchar_t* StringIn);
+	typedef bool (*LoadModDataString_T)(const wchar_t* ModName, wchar_t*& StringOut);
+
+
 	namespace InternalFunctions {
 
 		inline Log_T I_Log;
@@ -385,6 +389,9 @@ namespace ModAPI {
 		inline PlayHapticFeedbackOnHand_T I_PlayHapticFeedbackOnHand;
 
 		inline SpawnBPModActor_T I_SpawnBPModActor;
+
+		inline SaveModDataString_T I_SaveModDataString;
+		inline LoadModDataString_T I_LoadModDataString;
 
 	}
 

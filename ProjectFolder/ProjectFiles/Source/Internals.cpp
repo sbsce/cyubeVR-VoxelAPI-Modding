@@ -50,6 +50,12 @@ void Internals::Init()
 	InternalFunctions::I_SpawnBPModActor = (SpawnBPModActor_T) GetProcAddress(app, "SpawnBPModActor");
 
 
+	InternalFunctions::I_SaveModDataString = (SaveModDataString_T) GetProcAddress(app, "SaveModDataString");
+	InternalFunctions::I_LoadModDataString = (LoadModDataString_T) GetProcAddress(app, "LoadModDataString");
+
+
+
+
 	std::string ErrorString = GetLastErrorAsString();
 
 	if (!InternalFunctions::I_Log) __debugbreak();
