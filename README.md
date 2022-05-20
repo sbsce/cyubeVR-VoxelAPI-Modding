@@ -86,6 +86,10 @@ void SetTimeOfDay(float NewTime);
 void PlayHapticFeedbackOnHand(bool LeftHand, float DurationSeconds, float Frequency, float Amplitude);
 
 void SpawnBPModActor(CoordinateInCentimeters At, const wString& ModName, const wString& ActorName);
+
+void SaveModDataString(wString ModName, wString StringIn);
+
+bool LoadModDataString(wString ModName, wString& StringOut);
 ```
 
 And these are some convenience functions currently available to be called:
