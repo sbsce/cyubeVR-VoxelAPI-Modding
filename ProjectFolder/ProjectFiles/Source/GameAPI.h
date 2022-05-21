@@ -168,3 +168,9 @@ using namespace ModAPI;
 
 	// Returns the path where this mod is installed
 	const wString& GetThisModFolderPath();
+
+/*
+*	Get a handle to memory you want to share between multiple different mods. 
+*	The handle automatically aquires a lock on the memory for thread safety, and releases it when going out of scope.
+*/
+	const ScopedSharedMemoryHandle GetSharedMemoryPointer(wString Key, bool CreateIfNotExist, bool WaitUntilExist);

@@ -54,6 +54,8 @@ void Internals::Init()
 	InternalFunctions::I_LoadModDataString = (LoadModDataString_T) GetProcAddress(app, "LoadModDataString");
 
 
+	InternalFunctions::I_GetSharedMemoryPointer = (GetSharedMemoryPointer_T) GetProcAddress(app, "GetSharedMemoryPointer");
+	InternalFunctions::I_ReleaseSharedMemoryPointer = (ReleaseSharedMemoryPointer_T) GetProcAddress(app, "ReleaseSharedMemoryPointer");
 
 
 	std::string ErrorString = GetLastErrorAsString();
