@@ -133,7 +133,7 @@ bool LoadModDataString(wString ModName, wString& StringOut)
 
 	StringOut = std::wstring(StringOutT);
 
-	//free(StringOutT);
+	HeapFree(GetProcessHeap(), 0, StringOutT);
 
 	return true;
 }
