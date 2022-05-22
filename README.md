@@ -181,3 +181,11 @@ Inside of that newly created folder, paste in your `Code.dll` file. That's all!
 With the example from above, whenever the custom block with the UniqueID `82323470` is placed, it will now look like this in the game:
 
 ![TutorialResult](https://user-images.githubusercontent.com/38058738/162883157-a5b7fb65-68dc-42ba-a7eb-b33d51e0ea4d.gif)
+
+---------------------------
+
+# Some technical info for those who are interested
+
+Internally the VoxelAPI is a C API, but the Visual Studio template project on this repo has C++ wrappers around all the C functions, to make them as convenient to use as possible, like using C++ strings everywhere instead of C strings, and allowing implicit conversions between types like CoordinateInBlocks and CoordinateInCentimeters.
+
+The threading model of the VoxelAPI is that every VoxelAPI mod runs on its own individual thread - this means that even if you decide to calculate a billion digits of PI in the code of a VoxelAPI mod, it can not freeze the game or slow down other mods. All VoxelAPI functions for interacting with the game are thread-safe. In practice this means that a VoxelAPI mod does not have to care about threading at all - everything inside the VoxelAPI mod happens on exactly one thread, and it can not slow down the game. That's very convenient, as it means that even someone who doesn't know anything about C++ automatically writes VoxelAPI mods that perform well, without having to actively care about performance.
