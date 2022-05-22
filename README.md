@@ -90,6 +90,8 @@ void SpawnBPModActor(CoordinateInCentimeters At, const wString& ModName, const w
 void SaveModDataString(wString ModName, wString StringIn);
 
 bool LoadModDataString(wString ModName, wString& StringOut);
+
+ScopedSharedMemoryHandle GetSharedMemoryPointer(wString Key, bool CreateIfNotExist, bool WaitUntilExist);
 ```
 
 And these are some convenience functions currently available to be called:
