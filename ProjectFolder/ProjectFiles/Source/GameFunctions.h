@@ -133,7 +133,7 @@ namespace ModAPI {
 		wchar_t* Key;
 		bool Valid;
 
-		ScopedSharedMemoryHandle(SharedMemoryHandleC& i) : Pointer(*i.Pointer), Key(i.Key), Valid(i.Valid) {}
+		ScopedSharedMemoryHandle(const SharedMemoryHandleC& i) : Pointer(*i.Pointer), Key(i.Key), Valid(i.Valid) {}
 
 		~ScopedSharedMemoryHandle(); // Declared here, defined in GameAPI.cpp
 

@@ -221,11 +221,9 @@ const wString& GetThisModFolderPath()
 	return Path;
 }
 
-const ScopedSharedMemoryHandle GetSharedMemoryPointer(wString Key, bool CreateIfNotExist, bool WaitUntilExist)
+ScopedSharedMemoryHandle GetSharedMemoryPointer(wString Key, bool CreateIfNotExist, bool WaitUntilExist)
 {
-	SharedMemoryHandleC Handle = InternalFunctions::I_GetSharedMemoryPointer(Key.c_str(), CreateIfNotExist, WaitUntilExist);
-
-	return ScopedSharedMemoryHandle(Handle);
+	return ScopedSharedMemoryHandle(InternalFunctions::I_GetSharedMemoryPointer(Key.c_str(), CreateIfNotExist, WaitUntilExist));
 }
 
 ScopedSharedMemoryHandle::~ScopedSharedMemoryHandle() {
