@@ -50,9 +50,7 @@ void Log(const wString& String);
 BlockInfo GetBlock(CoordinateInBlocks At);
 
 bool SetBlock(CoordinateInBlocks At, EBlockType NativeType);
-
 bool SetBlock(CoordinateInBlocks At, UniqueID CustomBlockID);
-
 bool SetBlock(CoordinateInBlocks At, BlockInfo BlockType);
 
 void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
@@ -62,25 +60,19 @@ CoordinateInCentimeters GetPlayerLocation();
 bool SetPlayerLocation(CoordinateInCentimeters To);
 
 CoordinateInCentimeters GetPlayerLocationHead();
-
 DirectionVectorInCentimeters GetPlayerViewDirection();
-
 CoordinateInCentimeters GetHandLocation(bool LeftHand);
-
 CoordinateInCentimeters GetIndexFingerTipLocation(bool LeftHand);
 
 void SpawnBlockItem(CoordinateInCentimeters At, BlockInfo Type);
 
 void AddToInventory(BlockInfo Type, int Amount);
-
 void RemoveFromInventory(BlockInfo Type, int Amount);
 
 wString GetWorldName();
 
 float GetTimeOfDay();
-
 bool IsCurrentlyNight();
-
 void SetTimeOfDay(float NewTime);
 
 void PlayHapticFeedbackOnHand(bool LeftHand, float DurationSeconds, float Frequency, float Amplitude);
@@ -88,8 +80,10 @@ void PlayHapticFeedbackOnHand(bool LeftHand, float DurationSeconds, float Freque
 void SpawnBPModActor(CoordinateInCentimeters At, const wString& ModName, const wString& ActorName);
 
 void SaveModDataString(wString ModName, wString StringIn);
-
 bool LoadModDataString(wString ModName, wString& StringOut);
+
+void SaveModData(wString ModName, const std::vector<uint8_t>& Data);
+std::vector<uint8_t> LoadModData(wString ModName);
 
 ScopedSharedMemoryHandle GetSharedMemoryPointer(wString Key, bool CreateIfNotExist, bool WaitUntilExist);
 ```
@@ -107,6 +101,8 @@ std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At,
 
 const wString& GetThisModFolderPath();
 ```
+
+To see the whole list of API functions including comments explaining what they do, take a look at the [GameAPI.h header file here](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/blob/main/ProjectFolder/ProjectFiles/Source/GameAPI.h).
 
 More functions to interact with the game can be added at request, so if there is something you would like to have access to that is not yet available, feel free to request it in the #Modding channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR) or open an issue here on this repository.
 
