@@ -92,13 +92,9 @@ using namespace ModAPI;
 	void SpawnBlockItem(CoordinateInCentimeters At, BlockInfo Type);
 
 /*
-*	Add one or multiple items to the inventory. 
+*	Add or remove one or multiple items to/from the inventory. 
 */
 	void AddToInventory(BlockInfo Type, int Amount);
-
-/*
-*	Remove one or multiple items from the inventory. 
-*/
 	void RemoveFromInventory(BlockInfo Type, int Amount);
 
 /*
@@ -134,16 +130,16 @@ using namespace ModAPI;
 	void SpawnBPModActor(CoordinateInCentimeters At, const wString& ModName, const wString& ActorName);
 
 /*
-*	Save a persistent string to the save files of the currently active world, that you can later load using LoadModDataString.
+*	USe SaveModDataString to save a persistent string to the save files of the currently active world, that you can later load using LoadModDataString.
 */
 	void SaveModDataString(wString ModName, wString StringIn);
-
-/*
-*	Load a string you previously saved using SaveModDataString.
-*/
 	bool LoadModDataString(wString ModName, wString& StringOut);
 
-
+/*
+*	Use SaveModData to save persistent binary data to the save files of the currently active world, that you can later load using LoadModData.
+*/
+	void SaveModData(wString ModName, const std::vector<uint8_t>& Data);
+	std::vector<uint8_t> LoadModData(wString ModName);
 
 /*
 *	Returns a random bool with a certain chance to be TRUE. This function is very fast (~5 CPU cycles).
@@ -160,17 +156,23 @@ using namespace ModAPI;
 	template<int32_t Min, int32_t Max> int32_t GetRandomInt();
 
 
-	// Returns an array of all coordinates in a certain box extent around a specific coordinate
+/*
+*	Returns an array of all coordinates in a certain box extent or radius around a specific coordinate
+*/
 	std::vector<CoordinateInBlocks> GetAllCoordinatesInBox(CoordinateInBlocks At, CoordinateInBlocks BoxExtent);
+	std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);	
 
-	// Returns an array of all coordinates in a certain radius around a specific coordinate
-	std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);
-
-	// Returns the path where this mod is installed
+/*
+*	Returns the path where this mod is installed
+*/
 	const wString& GetThisModFolderPath();
 
 /*
-*	Get a handle to memory you want to share between multiple different mods. 
-*	The handle automatically aquires a lock on the memory for thread safety, and releases it when going out of scope.
+*	Get a handle to memory that you want to share between multiple different mods. If you don't know what this does, you most likely never need to use it. 
+*	The handle automatically aquires a lock on the memory it points to, and releases it when going out of scope.
+*	ScopedSharedMemoryHandle.Pointer is a reference to a void pointer, which you can cast and set to any type you need.
+* 
+*	If you set either CreateIfNotExist or WaitUntilExist to true, then the returned handle is guaranteed to be valid, and you don't need to check if it is valid.
+*	If both CreateIfNotExist and WaitUntilExist are false, you need to check if Handle.Valid == true before accessing the pointer in it. Handle.Valid will be false then if the key does not exist.
 */
 	ScopedSharedMemoryHandle GetSharedMemoryPointer(wString Key, bool CreateIfNotExist, bool WaitUntilExist);
