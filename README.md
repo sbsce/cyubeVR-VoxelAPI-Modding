@@ -77,6 +77,9 @@ void SetTimeOfDay(float NewTime);
 
 void PlayHapticFeedbackOnHand(bool LeftHand, float DurationSeconds, float Frequency, float Amplitude);
 
+float GetPlayerHealth();
+float SetPlayerHealth(float NewHealth, bool Offset);
+
 void SpawnBPModActor(CoordinateInCentimeters At, const wString& ModName, const wString& ActorName);
 
 void SaveModDataString(wString ModName, wString StringIn);
@@ -84,6 +87,11 @@ bool LoadModDataString(wString ModName, wString& StringOut);
 
 void SaveModData(wString ModName, const std::vector<uint8_t>& Data);
 std::vector<uint8_t> LoadModData(wString ModName);
+
+const wString& GetThisModInstallFolderPath();
+wString GetThisModSaveFolderPath(wString ModName);
+
+GameVersion GetGameVersionNumber();
 
 ScopedSharedMemoryHandle GetSharedMemoryPointer(wString Key, bool CreateIfNotExist, bool WaitUntilExist);
 ```
@@ -98,8 +106,6 @@ template<int32_t Min, int32_t Max> int32_t GetRandomInt();
 std::vector<CoordinateInBlocks> GetAllCoordinatesInBox(CoordinateInBlocks At, CoordinateInBlocks BoxExtent;
 
 std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);
-
-const wString& GetThisModFolderPath();
 ```
 
 To see the whole list of API functions including comments explaining what they do, take a look at the [GameAPI.h header file here](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/blob/main/ProjectFolder/ProjectFiles/Source/GameAPI.h).
