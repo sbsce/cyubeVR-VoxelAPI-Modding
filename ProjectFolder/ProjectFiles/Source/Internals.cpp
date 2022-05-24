@@ -4,6 +4,13 @@
 
 #include "GameAPI.cpp"
 
+#define RegisterFunction(Name)  InternalFunctions::I_##Name = (##Name##_T) GetProcAddress(app, #Name);		\
+								if (!InternalFunctions::I_##Name) {											\
+									std::string ErrorString = GetLastErrorAsString();						\
+									__debugbreak();															\
+								};
+
+
 void Internals::Init()
 {
 	std::cout << "Loaded!" << std::endl;
@@ -14,56 +21,49 @@ void Internals::Init()
 		__debugbreak();
 	}
 
-	InternalFunctions::I_Log = (Log_T) GetProcAddress(app, "Log");
+	RegisterFunction(Log);
 
-	InternalFunctions::I_GetBlock = (GetBlock_T) GetProcAddress(app, "GetBlock");
+	RegisterFunction(GetBlock);
+	RegisterFunction(SetBlock);
 
-	InternalFunctions::I_SetBlock = (SetBlock_T) GetProcAddress(app, "SetBlock");
+	RegisterFunction(SpawnHintText);
 
-	InternalFunctions::I_SpawnHintText = (SpawnHintText_T) GetProcAddress(app, "SpawnHintText");
+	RegisterFunction(GetPlayerLocation);
+	RegisterFunction(SetPlayerLocation);
+	RegisterFunction(GetPlayerLocationHead);
+	RegisterFunction(GetPlayerViewDirection);
 
-	InternalFunctions::I_GetPlayerLocation = (GetPlayerLocation_T) GetProcAddress(app, "GetPlayerLocation");
+	RegisterFunction(GetHandLocation);
+	RegisterFunction(GetIndexFingerTipLocation);
 
-	InternalFunctions::I_SetPlayerLocation = (SetPlayerLocation_T) GetProcAddress(app, "SetPlayerLocation");
+	RegisterFunction(SpawnBlockItem);
 
-	InternalFunctions::I_GetPlayerLocationHead = (GetPlayerLocationHead_T)GetProcAddress(app, "GetPlayerLocationHead");
+	RegisterFunction(AddToInventory);
+	RegisterFunction(RemoveFromInventory);
 
-	InternalFunctions::I_GetPlayerViewDirection = (GetPlayerViewDirection_T) GetProcAddress(app, "GetPlayerViewDirection");
+	RegisterFunction(GetWorldName);
 
-	InternalFunctions::I_GetHandLocation = (GetHandLocation_T) GetProcAddress(app, "GetHandLocation");
-	InternalFunctions::I_GetIndexFingerTipLocation = (GetIndexFingerTipLocation_T) GetProcAddress(app, "GetIndexFingerTipLocation");
+	RegisterFunction(GetTimeOfDay);
+	RegisterFunction(SetTimeOfDay);
 
-	InternalFunctions::I_SpawnBlockItem = (SpawnBlockItem_T) GetProcAddress(app, "SpawnBlockItem");
+	RegisterFunction(PlayHapticFeedbackOnHand);
 
-	InternalFunctions::I_AddToInventory = (AddToInventory_T) GetProcAddress(app, "AddToInventory");
-	InternalFunctions::I_RemoveFromInventory = (RemoveFromInventory_T) GetProcAddress(app, "RemoveFromInventory");
+	RegisterFunction(GetPlayerHealth);
+	RegisterFunction(SetPlayerHealth);
 
-	InternalFunctions::I_GetWorldName = (GetWorldName_T) GetProcAddress(app, "GetWorldName");
+	RegisterFunction(SpawnBPModActor);
 
-	InternalFunctions::I_GetTimeOfDay = (GetTimeOfDay_T) GetProcAddress(app, "GetTimeOfDay");
+	RegisterFunction(SaveModDataString);
+	RegisterFunction(LoadModDataString);
+	RegisterFunction(SaveModData);
+	RegisterFunction(LoadModData);
 
-	InternalFunctions::I_SetTimeOfDay = (SetTimeOfDay_T) GetProcAddress(app, "SetTimeOfDay");
+	RegisterFunction(GetThisModSaveFolderPath);
 
+	RegisterFunction(GetGameVersionNumber);
 
-	InternalFunctions::I_PlayHapticFeedbackOnHand = (PlayHapticFeedbackOnHand_T) GetProcAddress(app, "PlayHapticFeedbackOnHand");
-
-	InternalFunctions::I_SpawnBPModActor = (SpawnBPModActor_T) GetProcAddress(app, "SpawnBPModActor");
-
-
-	InternalFunctions::I_SaveModDataString = (SaveModDataString_T) GetProcAddress(app, "SaveModDataString");
-	InternalFunctions::I_LoadModDataString = (LoadModDataString_T) GetProcAddress(app, "LoadModDataString");
-
-	InternalFunctions::I_SaveModData = (SaveModData_T) GetProcAddress(app, "SaveModData");
-	InternalFunctions::I_LoadModData = (LoadModData_T) GetProcAddress(app, "LoadModData");
-
-
-	InternalFunctions::I_GetSharedMemoryPointer = (GetSharedMemoryPointer_T) GetProcAddress(app, "GetSharedMemoryPointer");
-	InternalFunctions::I_ReleaseSharedMemoryPointer = (ReleaseSharedMemoryPointer_T) GetProcAddress(app, "ReleaseSharedMemoryPointer");
-
-
-	std::string ErrorString = GetLastErrorAsString();
-
-	if (!InternalFunctions::I_Log) __debugbreak();
+	RegisterFunction(GetSharedMemoryPointer);
+	RegisterFunction(ReleaseSharedMemoryPointer);
 
 	Event_OnLoad();
 }

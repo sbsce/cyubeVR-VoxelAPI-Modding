@@ -122,6 +122,12 @@ namespace ModAPI {
 		None
 	};
 
+	struct GameVersion {
+		uint32_t MajorVersion;
+		uint32_t MinorVersion;
+		bool IsBetaBuild;
+	};
+
 	struct SharedMemoryHandleC {
 		void** Pointer;
 		wchar_t* Key;
@@ -363,6 +369,9 @@ namespace ModAPI {
 
 	typedef void (*PlayHapticFeedbackOnHand_T)(bool LeftHand, float DurationSeconds, float Frequency, float Amplitude);
 
+	typedef float (*GetPlayerHealth_T)();
+	typedef float (*SetPlayerHealth_T)(float NewHealth, bool Offset);
+
 	typedef void (*SpawnBPModActor_T)(ModAPI::CoordinateInCentimeters At, const wchar_t* ModName, const wchar_t* ActorName);
 
 
@@ -372,6 +381,8 @@ namespace ModAPI {
 	typedef void (*SaveModData_T)(const wchar_t* ModName, uint8_t* Data, uint64_t ArraySize);
 	typedef uint8_t* (*LoadModData_T)(const wchar_t* ModName, uint64_t* ArraySizeOut);
 
+	typedef void (*GetThisModSaveFolderPath_T) (const wchar_t* ModName, wchar_t* PathOut);
+	typedef ModAPI::GameVersion (*GetGameVersionNumber_T) ();
 
 	typedef SharedMemoryHandleC (*GetSharedMemoryPointer_T)(const wchar_t* Key, bool CreateIfNotExist, bool WaitUntilExist);
 	typedef void (*ReleaseSharedMemoryPointer_T)(ModAPI::SharedMemoryHandleC& Handle);
@@ -415,6 +426,9 @@ namespace ModAPI {
 
 		inline PlayHapticFeedbackOnHand_T I_PlayHapticFeedbackOnHand;
 
+		inline GetPlayerHealth_T I_GetPlayerHealth;
+		inline SetPlayerHealth_T I_SetPlayerHealth;
+
 		inline SpawnBPModActor_T I_SpawnBPModActor;
 
 		inline SaveModDataString_T I_SaveModDataString;
@@ -422,6 +436,9 @@ namespace ModAPI {
 
 		inline SaveModData_T I_SaveModData;
 		inline LoadModData_T I_LoadModData;
+
+		inline GetThisModSaveFolderPath_T I_GetThisModSaveFolderPath;
+		inline GetGameVersionNumber_T I_GetGameVersionNumber;
 
 		inline GetSharedMemoryPointer_T I_GetSharedMemoryPointer;
 		inline ReleaseSharedMemoryPointer_T I_ReleaseSharedMemoryPointer;
