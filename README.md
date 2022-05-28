@@ -27,13 +27,13 @@ Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved);
 
 Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved);
 
-Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, wString ToolName);
+Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, wString ToolName, CoordinateInCentimeters ExactHitLocation, bool ToolHeldByHandLeft)
 
 Event_AnyBlockPlaced(CoordinateInBlocks At, BlockInfo Type, bool Moved);
 
 Event_AnyBlockDestroyed(CoordinateInBlocks At, BlockInfo Type, bool Moved);
 
-Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, wString ToolName);
+Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, wString ToolName, CoordinateInCentimeters ExactHitLocation, bool ToolHeldByHandLeft);
 
 Event_Tick();
 
@@ -50,8 +50,11 @@ void Log(const wString& String);
 BlockInfo GetBlock(CoordinateInBlocks At);
 
 bool SetBlock(CoordinateInBlocks At, EBlockType NativeType);
+bool SetBlock(CoordinateInBlocks At, EBlockType NativeType, ERotation Rotation);
 bool SetBlock(CoordinateInBlocks At, UniqueID CustomBlockID);
 bool SetBlock(CoordinateInBlocks At, BlockInfo BlockType);
+
+BlockInfo GetAndSetBlock(CoordinateInBlocks At, BlockInfo BlockType);
 
 void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
 
