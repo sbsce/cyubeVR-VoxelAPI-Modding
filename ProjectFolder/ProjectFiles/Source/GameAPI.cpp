@@ -11,13 +11,20 @@ void Log(const wString& String)
 
 BlockInfo GetBlock(CoordinateInBlocks At)
 {
-	BlockInfoC Type = InternalFunctions::I_GetBlock(At);
-	return *((BlockInfo*)(&Type));
+	return InternalFunctions::I_GetBlock(At);
 }
 
 bool SetBlock(CoordinateInBlocks At, BlockInfo BlockType)
 {
-	return InternalFunctions::I_SetBlock(At, BlockType);
+	BlockInfo BlockTypeOut;
+	return InternalFunctions::I_SetBlock(At, BlockType, BlockTypeOut);
+}
+
+BlockInfo GetAndSetBlock(CoordinateInBlocks At, BlockInfo BlockType)
+{
+	BlockInfo BlockTypeOut;
+	InternalFunctions::I_SetBlock(At, BlockType, BlockTypeOut);
+	return BlockTypeOut;
 }
 
 void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical)
@@ -58,8 +65,7 @@ CoordinateInCentimeters GetPlayerLocationHead()
 
 DirectionVectorInCentimeters GetPlayerViewDirection()
 {
-	DirectionVectorInCentimetersC Type = InternalFunctions::I_GetPlayerViewDirection();
-	return*((DirectionVectorInCentimeters*)(&Type));
+	return InternalFunctions::I_GetPlayerViewDirection();
 }
 
 CoordinateInCentimeters GetHandLocation(bool LeftHand)

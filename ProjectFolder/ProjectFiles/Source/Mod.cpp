@@ -29,7 +29,7 @@ void Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID, bool Mo
 
 
 // Run every time a block is hit by a tool
-void Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, wString ToolName)
+void Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, wString ToolName, CoordinateInCentimeters ExactHitLocation, bool ToolHeldByHandLeft)
 {
 
 	if (ToolName == L"T_Stick") {
@@ -87,7 +87,7 @@ void Event_AnyBlockDestroyed(CoordinateInBlocks At, BlockInfo Type, bool Moved)
 }
 
 // Run every time any block is hit by a tool
-void Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, wString ToolName)
+void Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, wString ToolName, CoordinateInCentimeters ExactHitLocation, bool ToolHeldByHandLeft)
 {
 
 }

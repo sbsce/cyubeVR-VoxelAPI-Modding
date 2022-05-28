@@ -4,11 +4,11 @@
 
 #include "GameAPI.cpp"
 
-#define RegisterFunction(Name)  InternalFunctions::I_##Name = (##Name##_T) GetProcAddress(app, #Name);		\
-								if (!InternalFunctions::I_##Name) {											\
-									std::string ErrorString = GetLastErrorAsString();						\
-									__debugbreak();															\
-								};
+#define RegisterFunction(FunctionName)  InternalFunctions::I_##FunctionName = (##FunctionName##_T) GetProcAddress(app, #FunctionName);		\
+										if (!InternalFunctions::I_##FunctionName) {															\
+											std::string ErrorString = GetLastErrorAsString();												\
+											__debugbreak();																					\
+										};
 
 
 void Internals::Init()
@@ -18,6 +18,7 @@ void Internals::Init()
 	app = GetModuleHandle(nullptr);
 
 	if (!app) {
+		std::string ErrorString = GetLastErrorAsString();
 		__debugbreak();
 	}
 
@@ -65,12 +66,21 @@ void Internals::Init()
 	RegisterFunction(GetSharedMemoryPointer);
 	RegisterFunction(ReleaseSharedMemoryPointer);
 
+	std::string ErrorString = GetLastErrorAsString();
+
+	if (!InternalFunctions::I_Log) __debugbreak();
+
 	Event_OnLoad();
 }
 
 const char* Internals::GetName()
 {
 	return "DefaultName";
+}
+
+const uint32_t Internals::GetAPIVersionNumber()
+{
+	return 1;
 }
 
 const uint32_t Internals::GetModUniqueIDsNum()
@@ -98,9 +108,9 @@ const void Internals::E_Event_BlockDestroyed(const CoordinateInBlocks& At, const
 	Event_BlockDestroyed(At, CustomBlockID, Moved);
 }
 
-const void Internals::E_Event_BlockHitByTool(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const wchar_t* ToolName)
+const void Internals::E_Event_BlockHitByTool(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const wchar_t* ToolName, const CoordinateInCentimeters& ExactHitLocation, bool ToolHeldByHandLeft)
 {	
-	Event_BlockHitByTool(At, CustomBlockID, ToolName);
+	Event_BlockHitByTool(At, CustomBlockID, ToolName, ExactHitLocation, ToolHeldByHandLeft);
 }
 
 const void Internals::E_Event_Tick()
@@ -118,17 +128,17 @@ const void Internals::E_Event_OnExit()
 	Event_OnExit();
 }
 
-const void Internals::E_Event_AnyBlockPlaced(const CoordinateInBlocks& At, const BlockInfoC& Type, const bool& Moved)
+const void Internals::E_Event_AnyBlockPlaced(const CoordinateInBlocks& At, const BlockInfo& Type, const bool& Moved)
 {
-	Event_AnyBlockPlaced(At, *((BlockInfo*)&Type), Moved);
+	Event_AnyBlockPlaced(At, Type, Moved);
 }
 
-const void Internals::E_Event_AnyBlockDestroyed(const CoordinateInBlocks& At, const BlockInfoC& Type, const bool& Moved)
+const void Internals::E_Event_AnyBlockDestroyed(const CoordinateInBlocks& At, const BlockInfo& Type, const bool& Moved)
 {
-	Event_AnyBlockDestroyed(At, *((BlockInfo*)&Type), Moved);
+	Event_AnyBlockDestroyed(At, Type, Moved);
 }
 
-const void Internals::E_Event_AnyBlockHitByTool(const CoordinateInBlocks& At, const BlockInfoC& Type, const wchar_t* ToolName)
+const void Internals::E_Event_AnyBlockHitByTool(const CoordinateInBlocks& At, const BlockInfo& Type, const wchar_t* ToolName, const CoordinateInCentimeters& ExactHitLocation, bool ToolHeldByHandLeft)
 {
-	Event_AnyBlockHitByTool(At, *((BlockInfo*)&Type), ToolName);
+	Event_AnyBlockHitByTool(At, Type, ToolName, ExactHitLocation, ToolHeldByHandLeft);
 }

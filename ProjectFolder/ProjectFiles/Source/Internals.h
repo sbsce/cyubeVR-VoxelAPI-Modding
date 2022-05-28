@@ -19,6 +19,8 @@ namespace Internals
 
 		_declspec(dllexport) const char* GetName();
 
+        _declspec(dllexport) const uint32_t GetAPIVersionNumber();
+
 		_declspec(dllexport) const uint32_t GetModUniqueIDsNum();
 		_declspec(dllexport) const void GetModUniqueIDs(UniqueID* ArrayIn);
 
@@ -28,7 +30,7 @@ namespace Internals
 
         _declspec(dllexport) const void E_Event_BlockDestroyed(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const bool& Moved);
 
-        _declspec(dllexport) const void E_Event_BlockHitByTool(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const wchar_t* ToolName);
+        _declspec(dllexport) const void E_Event_BlockHitByTool(const CoordinateInBlocks& At, const UniqueID& CustomBlockID, const wchar_t* ToolName, const CoordinateInCentimeters& ExactHitLocation, bool ToolHeldByHandLeft);
 
 		_declspec(dllexport) const void E_Event_Tick();
 
@@ -36,11 +38,11 @@ namespace Internals
         
         _declspec(dllexport) const void E_Event_OnExit();
 
-        _declspec(dllexport) const void E_Event_AnyBlockPlaced(const CoordinateInBlocks& At, const BlockInfoC& Type, const bool& Moved);
+        _declspec(dllexport) const void E_Event_AnyBlockPlaced(const CoordinateInBlocks& At, const BlockInfo& Type, const bool& Moved);
 
-        _declspec(dllexport) const void E_Event_AnyBlockDestroyed(const CoordinateInBlocks& At, const BlockInfoC& Type, const bool& Moved);
+        _declspec(dllexport) const void E_Event_AnyBlockDestroyed(const CoordinateInBlocks& At, const BlockInfo& Type, const bool& Moved);
 
-        _declspec(dllexport) const void E_Event_AnyBlockHitByTool(const CoordinateInBlocks& At, const BlockInfoC& Type, const wchar_t* ToolName);
+        _declspec(dllexport) const void E_Event_AnyBlockHitByTool(const CoordinateInBlocks& At, const BlockInfo& Type, const wchar_t* ToolName, const CoordinateInCentimeters& ExactHitLocation, bool ToolHeldByHandLeft);
 
 	}
 
