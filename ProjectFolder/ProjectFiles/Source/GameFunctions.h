@@ -176,13 +176,14 @@ namespace ModAPI {
 			return L"X=" + std::to_wstring(X) + L" Y=" + std::to_wstring(Y) + L" Z=" + std::to_wstring(Z);
 		}
 
-		constexpr CoordinateInCentimeters() : X(0), Y(0), Z(0) {}
+		constexpr CoordinateInCentimeters() = default;
 		constexpr CoordinateInCentimeters(int64_t X_, int64_t Y_, uint16_t Z_) : X(X_), Y(Y_), Z(Z_) {}
 
 		constexpr CoordinateInCentimeters(CoordinateInBlocks CIB);
 
 	};
 	static_assert(std::is_standard_layout<CoordinateInCentimeters>());
+	static_assert(std::is_trivial<CoordinateInCentimeters>());
 
 	struct CoordinateInBlocks {
 
@@ -218,13 +219,14 @@ namespace ModAPI {
 			return sqrt(X * X + Y * Y + Z * Z);
 		}
 
-		constexpr CoordinateInBlocks() : X(0), Y(0), Z(0) {}
+		constexpr CoordinateInBlocks() = default;
 		constexpr CoordinateInBlocks(int64_t X_, int64_t Y_, int16_t Z_) : X(X_), Y(Y_), Z(Z_) {}
 
 		constexpr CoordinateInBlocks(CoordinateInCentimeters CIM);
 
 	};
 	static_assert(std::is_standard_layout<CoordinateInBlocks>());
+	static_assert(std::is_trivial<CoordinateInBlocks>());
 
 	struct DirectionVectorInCentimeters {
 
@@ -261,10 +263,12 @@ namespace ModAPI {
 			return Value;
 		}
 
-		constexpr DirectionVectorInCentimeters() : X(0), Y(0), Z(0) {}
+		constexpr DirectionVectorInCentimeters() = default;
 		constexpr DirectionVectorInCentimeters(float X_, float Y_, float Z_) : X(X_), Y(Y_), Z(Z_) {}
 
 	};
+	static_assert(std::is_standard_layout<DirectionVectorInCentimeters>());
+	static_assert(std::is_trivial<DirectionVectorInCentimeters>());
 
 	constexpr int64_t round_custom(double x)
 	{
@@ -310,10 +314,10 @@ namespace ModAPI {
 	typedef BlockInfo (*GetBlock_T)(const ModAPI::CoordinateInBlocks& At);
 	typedef bool (*SetBlock_T)(const ModAPI::CoordinateInBlocks& At, const ModAPI::BlockInfo& BlockType, ModAPI::BlockInfo& OutReplacedType);
 
-	typedef void (*SpawnHintText_T)(ModAPI::CoordinateInCentimeters At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical);
+	typedef void (*SpawnHintText_T)(const ModAPI::CoordinateInCentimeters& At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical);
 	
 	typedef ModAPI::CoordinateInCentimeters (*GetPlayerLocation_T)();
-	typedef bool (*SetPlayerLocation_T)(ModAPI::CoordinateInCentimeters To);
+	typedef bool (*SetPlayerLocation_T)(const ModAPI::CoordinateInCentimeters& To);
 
 	typedef ModAPI::CoordinateInCentimeters(*GetPlayerLocationHead_T)();
 
@@ -323,10 +327,10 @@ namespace ModAPI {
 
 	typedef ModAPI::CoordinateInCentimeters (*GetIndexFingerTipLocation_T)(bool LeftHand);
 
-	typedef void (*SpawnBlockItem_T)(ModAPI::CoordinateInCentimeters At, ModAPI::BlockInfo Type);
+	typedef void (*SpawnBlockItem_T)(const ModAPI::CoordinateInCentimeters& At, const ModAPI::BlockInfo& Type);
 
-	typedef void (*AddToInventory_T)(ModAPI::BlockInfo Type, uint32_t Amount);
-	typedef void (*RemoveFromInventory_T)(ModAPI::BlockInfo Type, uint32_t Amount);
+	typedef void (*AddToInventory_T)(const ModAPI::BlockInfo& Type, uint32_t Amount);
+	typedef void (*RemoveFromInventory_T)(const ModAPI::BlockInfo& Type, uint32_t Amount);
 
 	typedef const wchar_t* (*GetWorldName_T)();
 
@@ -338,7 +342,7 @@ namespace ModAPI {
 	typedef float (*GetPlayerHealth_T)();
 	typedef float (*SetPlayerHealth_T)(float NewHealth, bool Offset);
 
-	typedef void (*SpawnBPModActor_T)(ModAPI::CoordinateInCentimeters At, const wchar_t* ModName, const wchar_t* ActorName);
+	typedef void (*SpawnBPModActor_T)(const ModAPI::CoordinateInCentimeters& At, const wchar_t* ModName, const wchar_t* ActorName);
 
 	typedef void (*SaveModDataString_T)(const wchar_t* ModName, const wchar_t* StringIn);
 	typedef bool (*LoadModDataString_T)(const wchar_t* ModName, wchar_t*& StringOut);
