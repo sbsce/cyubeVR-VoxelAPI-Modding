@@ -56,7 +56,7 @@ void Event_Tick()
 
 
 // Run once when the world is loaded
-void Event_OnLoad()
+void Event_OnLoad(bool CreatedNewWorld)
 {
 
 }

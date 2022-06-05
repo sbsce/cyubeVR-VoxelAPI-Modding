@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <random>
 #include <limits>
+#include <filesystem>
 
 void Log(const wString& String)
 {
@@ -260,6 +261,8 @@ wString GetThisModSaveFolderPath(wString ModName)
 {
 	wchar_t StringOut[1000];
 	InternalFunctions::I_GetThisModSaveFolderPath(ModName.c_str(), StringOut);
+
+	std::filesystem::create_directories(wString(StringOut));
 
 	return wString(StringOut);
 }

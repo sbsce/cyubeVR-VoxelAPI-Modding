@@ -34,7 +34,7 @@ namespace Internals
 
 		_declspec(dllexport) const void E_Event_Tick();
 
-		_declspec(dllexport) const void E_Event_OnLoad();
+		_declspec(dllexport) const void E_Event_OnLoad(const bool& CreatedNewWorld);
         
         _declspec(dllexport) const void E_Event_OnExit();
 

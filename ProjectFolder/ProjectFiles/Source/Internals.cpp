@@ -69,8 +69,6 @@ void Internals::Init()
 	std::string ErrorString = GetLastErrorAsString();
 
 	if (!InternalFunctions::I_Log) __debugbreak();
-
-	Event_OnLoad();
 }
 
 const char* Internals::GetName()
@@ -118,9 +116,9 @@ const void Internals::E_Event_Tick()
 	Event_Tick();
 }
 
-const void Internals::E_Event_OnLoad()
+const void Internals::E_Event_OnLoad(const bool& CreatedNewWorld)
 {
-	Event_OnLoad();
+	Event_OnLoad(CreatedNewWorld);
 }
 
 const void Internals::E_Event_OnExit()
