@@ -189,7 +189,7 @@ With the example from above, whenever the custom block with the UniqueID `823234
 
 ---------------------------
 
-# A list of open-source VoxelAPI mods that have been created so far:
+# A list of public VoxelAPI mod repos that have been created so far:
 
 **Digging Mod: https://github.com/Albertbz/cyubeVR-DiggingMod/**
 
@@ -203,7 +203,7 @@ With the example from above, whenever the custom block with the UniqueID `823234
 
 **Time Control: https://github.com/AltairreAtsu/TimeControl**
 
-You have made a mod and it's missing in this list? Just link it in the #voxel-api channel in the discord and it will be added :)
+You have made a VoxelAPI mod, the code is on some public repository, and it's missing from this list? Just link it in the #voxel-api channel in the discord and it will be added :)
 
 ---------------------------
 
