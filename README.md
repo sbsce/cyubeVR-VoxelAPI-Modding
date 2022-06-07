@@ -27,7 +27,7 @@ Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved);
 
 Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved);
 
-Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, wString ToolName, CoordinateInCentimeters ExactHitLocation, bool ToolHeldByHandLeft)
+Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, wString ToolName, CoordinateInCentimeters ExactHitLocation, bool ToolHeldByHandLeft);
 
 Event_AnyBlockPlaced(CoordinateInBlocks At, BlockInfo Type, bool Moved);
 
@@ -37,7 +37,7 @@ Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, wString ToolName,
 
 Event_Tick();
 
-Event_OnLoad();
+Event_OnLoad(bool CreatedNewWorld);
 
 Event_OnExit();
 ```
