@@ -10,6 +10,19 @@ You only need to know some very basic programming to use this. If you have ever 
 
 ---------------------------
 
+## Table of contents
+
+- [Introduction](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#cyubevr-voxelapi-modding)
+- [Example](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#example)
+- [Overview of how it works](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#overview-of-how-it-works)
+- [How to start using this](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#how-to-start-using-this)
+- [A list of public VoxelAPI mod repos that have been created so far](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#a-list-of-public-voxelapi-mod-repos-that-have-been-created-so-far)
+- [Some technical info for those who are interested](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#some-technical-info-for-those-who-are-interested)
+
+---------------------------
+
+## Example
+
 Here is an example of what you might do with this. A block that, when placed, procedurally generates a simple, randomly sized house:
 
 ![PlaceHouseBlock](https://user-images.githubusercontent.com/38058738/163169898-d87b6653-a6c4-4b51-aff0-0f065be19cc2.gif)
@@ -17,6 +30,8 @@ Here is an example of what you might do with this. A block that, when placed, pr
 (Both the source code, and the compiled mod ready to be put into your game, for that example is in the `Examples` folder, called `SimpleHouseGenerator__V1`.)
 
 ---------------------------
+
+## Overview of how it works
 
 The way the cyubeVR VoxelAPI works is that there are several `Event_` functions automatically called by the game for any loaded VoxelAPI mod. You put in your own code in one (or multiple) of those `Event_` functions, and you are able to call functions interacting with the game, like `SetBlock` or `GetBlock`. 
 
