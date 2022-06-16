@@ -228,7 +228,7 @@ See this
 
 **Creative Menu: https://github.com/Albertbz/cyubeVR-CreativeMenu**
 
-You have made a VoxelAPI mod, the code is on some public repository, and it's missing from this list? Just link it in the #voxel-api channel in the discord and it will be added :)
+*You have made a VoxelAPI mod, the code is on some public repository, and it's missing from this list? Just link it in the #voxel-api channel in the discord and it will be added :)*
 
 # Some technical info for those who are interested
 
