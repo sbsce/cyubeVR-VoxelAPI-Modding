@@ -12,12 +12,12 @@ You only need to know some very basic programming to use this. If you have ever 
 
 ## Table of contents
 
-- [Introduction](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#cyubevr-voxelapi-modding)
-- [Example](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#example)
-- [Overview of how it works](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#overview-of-how-it-works)
-- [How to start using this](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#how-to-start-using-this)
-- [A list of public VoxelAPI mod repos that have been created so far](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#a-list-of-public-voxelapi-mod-repos-that-have-been-created-so-far)
-- [Some technical info for those who are interested](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/edit/main/README.md#some-technical-info-for-those-who-are-interested)
+- [Introduction](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#cyubevr-voxelapi-modding)
+- [Example](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#example)
+- [Overview of how it works](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#overview-of-how-it-works)
+- [How to start using this](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#how-to-start-using-this)
+- [A list of public VoxelAPI mod repos that have been created so far](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#a-list-of-public-voxelapi-mod-repos-that-have-been-created-so-far)
+- [Some technical info for those who are interested](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#some-technical-info-for-those-who-are-interested)
 
 ---------------------------
 
