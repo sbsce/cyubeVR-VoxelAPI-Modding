@@ -12,8 +12,8 @@ You only need to know some very basic programming to use this. If you have ever 
 
 - [Introduction](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#cyubevr-voxelapi-modding)
 - [Example](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#example)
-- [Overview of how it works](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#overview-of-how-it-works)
-- [How to start using this](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#how-to-start-using-this)
+- [Overview of how the VoxelAPI works](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#overview-of-how-it-works)
+- [How to start using the VoxelAPI](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#how-to-start-using-this)
 - [A list of public VoxelAPI mod repos that have been created so far](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#a-list-of-public-voxelapi-mod-repos-that-have-been-created-so-far)
 - [Some technical info for those who are interested](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#some-technical-info-for-those-who-are-interested)
 
@@ -23,9 +23,9 @@ Here is an example of what you might do with this. A block that, when placed, pr
 
 ![PlaceHouseBlock](https://user-images.githubusercontent.com/38058738/163169898-d87b6653-a6c4-4b51-aff0-0f065be19cc2.gif)
 
-(Both the source code, and the compiled mod ready to be put into your game, for that example is in the `Examples` folder, called `SimpleHouseGenerator__V1`.)
+Both the source code, and the compiled mod ready to be put into your game, for that example is in the `Examples` folder in this repo, called `SimpleHouseGenerator`. That mod is also available on the [cyubeVR Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2819425276).
 
-# Overview of how it works
+# Overview of how the VoxelAPI works
 
 The way the cyubeVR VoxelAPI works is that there are several `Event_` functions automatically called by the game for any loaded VoxelAPI mod. You put in your own code in one (or multiple) of those `Event_` functions, and you are able to call functions interacting with the game, like `SetBlock` or `GetBlock`. 
 
@@ -126,7 +126,7 @@ More functions to interact with the game can be added at request, so if there is
 
 Of course, you also have access to the whole C/C++ standard library and any other C/C++ library you might want to include in your code.
 
-# How to start using this
+# How to start using the VoxelAPI
 
 ## Step 1: Click the "Download ZIP" download button here in GitHub
 
