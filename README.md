@@ -194,7 +194,9 @@ Inside of that folder, create a folder called `APIMods`. This folder needs to be
 
 Inside of that `APIMods` folder, create a folder called `MyGreatMod__V1`. That folder name needs to end with `__V1`, but apart from that, the name can be anything you want, it does not have to match the name of the first folder.
 
-When using the names of the example above, this is the full path now: `[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/APIMods/MyGreatMod__V1/`
+When using the names of the example above, this is the full path now: 
+
+`[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/APIMods/MyGreatMod__V1/`
 
 Then inside of that `MyGreatMod__V1` folder, paste in your `Code.dll` file. That's all!
 
