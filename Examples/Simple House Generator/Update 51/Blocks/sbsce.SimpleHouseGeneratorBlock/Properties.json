@@ -1,0 +1,18 @@
+{    
+    "Name": "House Generator Block",
+    "CreatorName": "Stonebrick Studios",
+    "UniqueID": 82323471,
+    "Recipe": {
+      "Array" : [34,34],
+      "SizeX": 1,
+      "SizeY": 2,
+      "SizeZ": 1
+    },
+    "Yield": 5,
+    "SimilarTo": 4,
+    "Textures": {
+        "Mode": 1,
+        "WithNormals" : false,
+        "WithGlowMap" : false
+      }
+  }
