@@ -23,7 +23,7 @@ Here is an example of what you might do with this. A block that, when placed, pr
 
 ![PlaceHouseBlock](https://user-images.githubusercontent.com/38058738/163169898-d87b6653-a6c4-4b51-aff0-0f065be19cc2.gif)
 
-Both the source code, and the compiled mod ready to be put into your game, for that example is in the `Examples` folder in this repo, called `SimpleHouseGenerator`. That mod is also available on the [cyubeVR Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2819425276).
+Both the [source code](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/blob/main/Examples/Simple%20House%20Generator/Update%2051/APIMods/SimpleHouseGenerator__V1/Mod.cpp), and the [compiled mod ready to be put into your game](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/tree/main/Examples) for that example is in the `Examples` folder in this repo, called `SimpleHouseGenerator`. The mod is also available on the [cyubeVR Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2819425276).
 
 # Overview of how the VoxelAPI works
 
