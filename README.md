@@ -8,8 +8,6 @@ One of the possible applications of this VoxelAPI Modding is creating "Generator
 
 You only need to know some very basic programming to use this. If you have ever done any programming in your life, you will be able to understand it. The programming language used is C++, but you do not need any C++ knowledge for this - if you have used any C/C#/Python/Java/Javascript/PHP/Go/Swift, that will suffice, you will quickly get used to the Syntax of this. It is designed to be as easy to use as possible. If you have any questions about anything, you will quickly get help in the #voxel-api channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR).
 
----------------------------
-
 ## Table of contents
 
 - [Introduction](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#cyubevr-voxelapi-modding)
@@ -19,8 +17,6 @@ You only need to know some very basic programming to use this. If you have ever 
 - [A list of public VoxelAPI mod repos that have been created so far](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#a-list-of-public-voxelapi-mod-repos-that-have-been-created-so-far)
 - [Some technical info for those who are interested](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding#some-technical-info-for-those-who-are-interested)
 
----------------------------
-
 ## Example
 
 Here is an example of what you might do with this. A block that, when placed, procedurally generates a simple, randomly sized house:
@@ -29,9 +25,7 @@ Here is an example of what you might do with this. A block that, when placed, pr
 
 (Both the source code, and the compiled mod ready to be put into your game, for that example is in the `Examples` folder, called `SimpleHouseGenerator__V1`.)
 
----------------------------
-
-## Overview of how it works
+# Overview of how it works
 
 The way the cyubeVR VoxelAPI works is that there are several `Event_` functions automatically called by the game for any loaded VoxelAPI mod. You put in your own code in one (or multiple) of those `Event_` functions, and you are able to call functions interacting with the game, like `SetBlock` or `GetBlock`. 
 
@@ -132,15 +126,15 @@ More functions to interact with the game can be added at request, so if there is
 
 Of course, you also have access to the whole C/C++ standard library and any other C/C++ library you might want to include in your code.
 
-# How to start using this:
+# How to start using this
 
-# Step 1: Click the "Download ZIP" download button here in GitHub
+## Step 1: Click the "Download ZIP" download button here in GitHub
 
 ![TutorialDownload](https://user-images.githubusercontent.com/38058738/162877620-ae9bda17-17b5-4d7e-a864-e696389de2c0.png)
 
-# Step 2: Extract the downloaded ZIP somewhere
+## Step 2: Extract the downloaded ZIP somewhere
 
-# Step 3:
+## Step 3: Open the Visual Studio solution
 
 In the extracted folder, go into the folder `ProjectFolder`. Then double click the `Code.sln` file.
 
@@ -150,13 +144,13 @@ If you have it correctly installed, double-clicking the `Code.sln` will show you
 
 ![TutorialVSScreen](https://user-images.githubusercontent.com/38058738/162878542-485f6720-2978-4e6f-aaa4-f6019590f265.png)
 
-# Step 4: Open the two relevant files
+## Step 4: Open the two relevant files
 
 There are two source files you need to edit and look at. They are called `Mod.cpp` and `GameAPI.h`. You can open them like this:
 
 ![TutorialOpenFiles](https://user-images.githubusercontent.com/38058738/162879058-d19ee0a9-8638-4104-80b6-e54172c52fa6.gif)
 
-# Step 5: Write your code in the Mod.cpp
+## Step 5: Write your code in the Mod.cpp
 
 This was all that was required to set this up. The only file you ever have to edit is the `Mod.cpp` file. The `GameAPI.h` is useful as a read-only file to see which functions you can call to interact with the game.
 
@@ -190,21 +184,33 @@ void Event_BlockPlaced(CoordinateInBlocks At, UniqueID CustomBlockID, bool Moved
 
 This will spawn a hint text saying "I am a block and I was placed!" above the block that was just placed, and the hint text will stay for 5 seconds.
 
-# Step 6: Get it into the game
+## Step 6: Get your VoxelAPI mod into the game
 
-To get your custom code into the the game, just compile the code by pressing Ctrl+F7 while you are in Visual Studio (or, if you don't like keyboard shortcuts, click on "Build" -> "Build Code" at the top). This will generate a new file in the `ProjectFolder`. That new file is called `Code.dll`. It contains the compiled code you just wrote! 
+To get your custom code into the the game, just compile the code by pressing Ctrl+F7 while you are in Visual Studio (or, if you don't like keyboard shortcuts or have changed the default shortcut, click on "Build" -> "Build Code" at the top). This will generate a new file in the `ProjectFolder`. That new file is called `Code.dll`. It contains the compiled code you just wrote! 
 
-Then go into the `[GameInstallDirectory]/cyubeVR/Mods/APIMods` folder and create a new folder there, called `MyGreatMod__V1`. You can call that folder anything you want, just make sure the name has `__V1` at the end. 
+Then go into the `[GameInstallDirectory]/cyubeVR/Mods/ModFolders/` folder and create a new folder for your mod there. You can call that folder anything you want, for example `MyGreatMod`. It's just a folder to hold *all* your mod data, including one or multiple custom blocks, and one or multiple VoxelAPI mods. That one `MyGreatMod` folder will be the folder you distribute to anyone who wants to use your mod.
 
-Inside of that newly created folder, paste in your `Code.dll` file. That's all!
+Inside of that folder, create a folder called `APIMods`. This folder needs to be named exactly `APIMods`, as all VoxelAPI mods has to reside the folder with that name.
+
+Then inside of that `APIMods` folder, create a folder called `MyGreatMod__V1`. That folder name needs to end with `__V1`, but apart from that, the name can be anything you want, it does not have to match the name of the first folder.
+
+When using the names of the example above, this is the full path now: `[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/APIMods/MyGreatMod__V1/`
+
+Then inside of that `MyGreatMod__V1` folder, paste in your `Code.dll` file. That's all!
+
+If your VoxelAPI mod requires any specific custom blocks that you created, you should also include those custom blocks directly in your mod folder. To do that, create a `Blocks` folder in the `[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/` folder, and paste any custom blocks required by the mod into that `Blocks` folder: `[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/Blocks/`. In this example, that would be the custom block with the UniqueID `82323470`.
+
+That's all! Now you can launch the game, and everything should work :)
 
 With the example from above, whenever the custom block with the UniqueID `82323470` is placed, it will now look like this in the game:
 
 ![TutorialResult](https://user-images.githubusercontent.com/38058738/162883157-a5b7fb65-68dc-42ba-a7eb-b33d51e0ea4d.gif)
 
----------------------------
+## Step 7 (Optional): Upload your mod to the Steam Workshop
 
-# A list of public VoxelAPI mod repos that have been created so far:
+See this 
+
+# A list of public VoxelAPI mod repos that have been created so far
 
 **Digging Mod: https://github.com/Albertbz/cyubeVR-DiggingMod/**
 
@@ -221,8 +227,6 @@ With the example from above, whenever the custom block with the UniqueID `823234
 **Creative Menu: https://github.com/Albertbz/cyubeVR-CreativeMenu**
 
 You have made a VoxelAPI mod, the code is on some public repository, and it's missing from this list? Just link it in the #voxel-api channel in the discord and it will be added :)
-
----------------------------
 
 # Some technical info for those who are interested
 
