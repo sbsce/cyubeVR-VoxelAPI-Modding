@@ -192,13 +192,15 @@ To get your custom code into the the game, just compile the code by pressing Ctr
 
 Then go into the `[GameInstallDirectory]/cyubeVR/Mods/ModFolders/` folder and create a new folder for your mod there. You can call that folder anything you want, for example `MyGreatMod`. It's just a folder to hold *all* your mod data, including one or multiple custom blocks, and one or multiple VoxelAPI mods. That one `MyGreatMod` folder will be the folder you distribute to anyone who wants to use your mod.
 
-Inside of that folder, create a folder called `APIMods`. This folder needs to be named exactly `APIMods`.
+Inside of that folder, create a folder called `Update 51`. This does *not* mean that your mod only works with Update 51. Your mod will also continue working with newer versions of the game, the reason that folder exists is to make it possible to distribute one single mod folder to users that might contain different versions of the mod for the stable build and the beta build of the game, if that's ever required.
+
+Inside of that `Update 51` folder, create a folder called `APIMods`. This folder needs to be named exactly `APIMods`.
 
 Inside of that `APIMods` folder, create a folder called `MyGreatMod__V1`. That folder name needs to end with `__V1`, but apart from that, the name can be anything you want, it does not have to match the name of the first folder.
 
 When using the names of the example above, this is the full path now: 
 
-`[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/APIMods/MyGreatMod__V1/`
+`[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/Update 51/APIMods/MyGreatMod__V1/`
 
 Then inside of that `MyGreatMod__V1` folder, paste in your `Code.dll` file. That's all!
 
