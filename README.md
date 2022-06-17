@@ -210,7 +210,7 @@ With the example from above, whenever the custom block with the UniqueID `823234
 
 ## Step 7 (Optional): Upload your mod to the Steam Workshop
 
-See this 
+After you've done everything of the above, you probably want to upload your mod to the [Steam Workshop](https://steamcommunity.com/app/619500/workshop/) where it can easily be downloaded with one click! For that, [see this post about how to upload a mod to the Steam Workshop](https://github.com/cyubeVR-Modding/.github/blob/main/How%20To%20Upload%20To%20Steam%20Workshop.md#how-to-upload-a-mod-to-the-cyubevr-steam-workshop). It's on its own page because that description does not just apply to VoxelAPI mods, but also to UE4 BP Mods.
 
 # A list of public VoxelAPI mod repos that have been created so far
 
