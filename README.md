@@ -2,7 +2,7 @@
 
 This is the official repository for the cyubeVR VoxelAPI, an easy way to programmatically interact with the voxel world in cyubeVR, requiring very little setup from you. It requires no knowledge of UE4 or any other game engine (if you instead want to do UE4 Blueprint Modding of cyubeVR, that is also natively supported, go [here](https://www.youtube.com/watch?v=MvVLacyToX0&list=PL6kr-0TUTN58n8QrQoFVq4JI-HZj4eDbY&index=1)). 
 
-The VoxelAPI is just one of three different ways how you can mod cyubeVR. If you have not read it yet, make sure to read through [this high-level overview of the three different types of modding supported in cyubeVR](https://github.com/cyubeVR-Modding/.github/blob/main/profile/README.md#cyubevr-modding-overview). 
+The VoxelAPI is one of three different ways how you can mod cyubeVR. If you have not read it yet, make sure to read through [this high-level overview of the three different types of modding supported in cyubeVR](https://github.com/cyubeVR-Modding/.github/blob/main/profile/README.md#cyubevr-modding-overview). 
 
 *(To be able to use this before Update 51 is released, you need to use the beta build of cyubeVR. If you don't yet know how to switch to the beta build, look at the pinned message in the #beta-build-patch-notes channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR).)*
 
