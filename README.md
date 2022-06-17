@@ -204,7 +204,7 @@ When using the names of the example above, this is the full path now:
 
 Then inside of that `MyGreatMod__V1` folder, paste in your `Code.dll` file. That's all!
 
-If your VoxelAPI mod requires any specific custom blocks that you created, you should also include those custom blocks directly in your mod folder. To do that, create a `Blocks` folder in the `[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/` folder, and paste any custom blocks required by the mod into that `Blocks` folder: `[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/Blocks/`. In this example, that would be the custom block with the UniqueID `82323470`.
+If your VoxelAPI mod requires any specific custom blocks that you created, you should also include those custom blocks directly in your mod folder. To do that, create a `Blocks` folder in the `[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/Update 51/` folder, and paste any custom blocks required by the mod into that `Blocks` folder: `[GameInstallDirectory]/cyubeVR/Mods/ModFolders/MyGreatMod/Update 51/Blocks/`. In this example, that would be the custom block with the UniqueID `82323470`.
 
 That's all! Now you can launch the game, and everything should work :)
 
