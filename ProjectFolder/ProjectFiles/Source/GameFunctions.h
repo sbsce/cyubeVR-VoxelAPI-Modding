@@ -109,6 +109,7 @@ namespace ModAPI {
 		LootableInventory,
 		RespawnTorch,
 		T_Bow,
+		SmoothbrainStatue,
 		MAX_BLOCKTYPE
 	};
 
@@ -176,9 +177,12 @@ namespace ModAPI {
 			return L"X=" + std::to_wstring(X) + L" Y=" + std::to_wstring(Y) + L" Z=" + std::to_wstring(Z);
 		}
 
+		std::wstring ToStringMeters() const {
+			return L"X=" + std::to_wstring(X/100) + L" Y=" + std::to_wstring(Y/100) + L" Z=" + std::to_wstring(Z/100);
+		}
+
 		constexpr CoordinateInCentimeters() = default;
 		constexpr CoordinateInCentimeters(int64_t X_, int64_t Y_, uint16_t Z_) : X(X_), Y(Y_), Z(Z_) {}
-
 		constexpr CoordinateInCentimeters(CoordinateInBlocks CIB);
 
 	};
@@ -250,6 +254,14 @@ namespace ModAPI {
 			return DirectionVectorInCentimeters(X * i.X, Y * i.Y, Z * i.Z);
 		}
 
+		constexpr DirectionVectorInCentimeters operator/(const float Multiplier) const {
+			return DirectionVectorInCentimeters(X / Multiplier, Y / Multiplier, Z / Multiplier);
+		}
+
+		constexpr DirectionVectorInCentimeters operator/(const DirectionVectorInCentimeters i) const {
+			return DirectionVectorInCentimeters(X / i.X, Y / i.Y, Z / i.Z);
+		}
+
 		std::wstring ToString() const {
 			return L"X=" + std::to_wstring(X) + L" Y=" + std::to_wstring(Y) + L" Z=" + std::to_wstring(Z);
 		}
@@ -315,7 +327,10 @@ namespace ModAPI {
 	typedef bool (*SetBlock_T)(const ModAPI::CoordinateInBlocks& At, const ModAPI::BlockInfo& BlockType, ModAPI::BlockInfo& OutReplacedType);
 
 	typedef void (*SpawnHintText_T)(const ModAPI::CoordinateInCentimeters& At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical);
+	typedef void* (*SpawnHintTextAdvanced_T)(const ModAPI::CoordinateInCentimeters& At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical);
 	
+	typedef void (*DestroyHintText_T)(void*& Handle);
+
 	typedef ModAPI::CoordinateInCentimeters (*GetPlayerLocation_T)();
 	typedef bool (*SetPlayerLocation_T)(const ModAPI::CoordinateInCentimeters& To);
 
@@ -333,6 +348,7 @@ namespace ModAPI {
 	typedef void (*RemoveFromInventory_T)(const ModAPI::BlockInfo& Type, uint32_t Amount);
 
 	typedef const wchar_t* (*GetWorldName_T)();
+	typedef uint32_t (*GetWorldSeed_T)();
 
 	typedef float (*GetTimeOfDay_T)();
 	typedef void (*SetTimeOfDay_T)(float NewTime);
@@ -351,6 +367,7 @@ namespace ModAPI {
 	typedef uint8_t* (*LoadModData_T)(const wchar_t* ModName, uint64_t* ArraySizeOut);
 
 	typedef void (*GetThisModSaveFolderPath_T) (const wchar_t* ModName, wchar_t* PathOut);
+	typedef void (*GetThisModGlobalSaveFolderPath_T) (const wchar_t* ModName, wchar_t* PathOut);
 	typedef ModAPI::GameVersion (*GetGameVersionNumber_T) ();
 
 	typedef SharedMemoryHandleC (*GetSharedMemoryPointer_T)(const wchar_t* Key, bool CreateIfNotExist, bool WaitUntilExist);
@@ -367,6 +384,8 @@ namespace ModAPI {
 		InternalFunction(SetBlock);
 
 		InternalFunction(SpawnHintText);
+		InternalFunction(SpawnHintTextAdvanced);
+		InternalFunction(DestroyHintText);
 
 		InternalFunction(GetPlayerLocation);
 		InternalFunction(SetPlayerLocation);
@@ -382,6 +401,7 @@ namespace ModAPI {
 		InternalFunction(RemoveFromInventory);
 
 		InternalFunction(GetWorldName);
+		InternalFunction(GetWorldSeed);
 
 		InternalFunction(GetTimeOfDay);
 		InternalFunction(SetTimeOfDay);
@@ -399,6 +419,7 @@ namespace ModAPI {
 		InternalFunction(LoadModData);
 
 		InternalFunction(GetThisModSaveFolderPath);
+		InternalFunction(GetThisModGlobalSaveFolderPath);
 		InternalFunction(GetGameVersionNumber);
 
 		InternalFunction(GetSharedMemoryPointer);

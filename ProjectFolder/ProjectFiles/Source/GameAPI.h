@@ -60,8 +60,16 @@ using namespace ModAPI;
 *	Show a hint text saying "I am a hint text" at the coordinate At for 5 seconds:				SpawnHintText(At, L"I am a hint text", 5);	
 *	A hint text with a new line:																SpawnHintText(At, L"First Line\nSecond Line", 5);
 *	A hint text that prints the value of an int variable MyInt:									SpawnHintText(At, L"My number is: " + std::to_wstring(MyInt), 5);
+* 
+*	SpawnHintTextAdvanced returns a handle that you can use to later manually destroy the hint text using the DestroyHintText function.
+*	If you use a DurationInSeconds of -1, the hint text will stay visible until you manually destroy it.
+* 
+*	SpawnHintTextAdvanced spawns a hint text exactly where you specify, while SpawnHintText spawns the hint text 20 cm above the location you specify.
 */
-	void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
+	void  SpawnHintText(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
+	void* SpawnHintTextAdvanced(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
+
+	void  DestroyHintText(void*& Handle);
 
 /*
 *	Returns the current player location (feet location).
@@ -111,6 +119,11 @@ using namespace ModAPI;
 *	Get the name of the currently loaded world.
 */
 	wString GetWorldName();
+
+/*
+*	Get the seed of the currently loaded world.
+*/
+	uint32_t GetWorldSeed();
 
 /*
 *	Get the current time of day. Returns a float between 0 and 2400. 0 and 2400 are the identical time, midnight. 1200 is mid-day.
@@ -169,6 +182,13 @@ using namespace ModAPI;
 *	If you can, always prefer to use the provided save functions (SaveModDataString or SaveModData) instead of manually writing save files.
 */
 	wString GetThisModSaveFolderPath(wString ModName);
+
+/*
+*	Returns a path for global mod data that is shared between different worlds. Usually, this is the wrong path to use, you should not use this for regular save files.
+*	If you want to make a mod that transfers data from one world to another,
+*	you would use this path, as the GetThisModSaveFolderPath function above returns a different path for each world.
+*/
+	wString GetThisModGlobalSaveFolderPath(wString ModName);
 
 /*
 *	Returns the version number of the game. The GameVersion type contains the major and the minor version number as individual integers, and a bool IsBetaBuild.

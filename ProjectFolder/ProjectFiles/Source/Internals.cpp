@@ -28,6 +28,8 @@ void Internals::Init()
 	RegisterFunction(SetBlock);
 
 	RegisterFunction(SpawnHintText);
+	RegisterFunction(SpawnHintTextAdvanced);
+	RegisterFunction(DestroyHintText);
 
 	RegisterFunction(GetPlayerLocation);
 	RegisterFunction(SetPlayerLocation);
@@ -43,6 +45,7 @@ void Internals::Init()
 	RegisterFunction(RemoveFromInventory);
 
 	RegisterFunction(GetWorldName);
+	RegisterFunction(GetWorldSeed);
 
 	RegisterFunction(GetTimeOfDay);
 	RegisterFunction(SetTimeOfDay);
@@ -60,6 +63,7 @@ void Internals::Init()
 	RegisterFunction(LoadModData);
 
 	RegisterFunction(GetThisModSaveFolderPath);
+	RegisterFunction(GetThisModGlobalSaveFolderPath);
 
 	RegisterFunction(GetGameVersionNumber);
 

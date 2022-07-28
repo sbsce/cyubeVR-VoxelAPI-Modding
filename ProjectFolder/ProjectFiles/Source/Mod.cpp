@@ -28,7 +28,10 @@ void Event_BlockDestroyed(CoordinateInBlocks At, UniqueID CustomBlockID, bool Mo
 }
 
 
-// Run every time a block is hit by a tool
+/*
+*	Run every time a block is hit by a tool
+*	All the exact possible ToolName are: T_Stick, T_Arrow, T_Pickaxe_Stone, T_Axe_Stone, T_Shovel_Stone, T_Pickaxe_Copper, T_Axe_Copper, T_Shovel_Copper, T_Sledgehammer_Copper, T_Pickaxe_Iron, T_Axe_Iron, T_Shovel_Iron, T_Sledgehammer_Iron
+*/ 
 void Event_BlockHitByTool(CoordinateInBlocks At, UniqueID CustomBlockID, wString ToolName, CoordinateInCentimeters ExactHitLocation, bool ToolHeldByHandLeft)
 {
 
@@ -86,7 +89,10 @@ void Event_AnyBlockDestroyed(CoordinateInBlocks At, BlockInfo Type, bool Moved)
 
 }
 
-// Run every time any block is hit by a tool
+/*
+*	Run every time any block is hit by a tool
+*	All the exact possible ToolName are: T_Stick, T_Arrow, T_Pickaxe_Stone, T_Axe_Stone, T_Shovel_Stone, T_Pickaxe_Copper, T_Axe_Copper, T_Shovel_Copper, T_Sledgehammer_Copper, T_Pickaxe_Iron, T_Axe_Iron, T_Shovel_Iron, T_Sledgehammer_Iron
+*/
 void Event_AnyBlockHitByTool(CoordinateInBlocks At, BlockInfo Type, wString ToolName, CoordinateInCentimeters ExactHitLocation, bool ToolHeldByHandLeft)
 {
 

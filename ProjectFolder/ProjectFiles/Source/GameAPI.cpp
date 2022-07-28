@@ -33,6 +33,16 @@ void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float Durati
 	return InternalFunctions::I_SpawnHintText(At, Text.c_str(), DurationInSeconds, SizeMultiplier, SizeMultiplierVertical);
 }
 
+void* SpawnHintTextAdvanced(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical)
+{
+	return InternalFunctions::I_SpawnHintTextAdvanced(At, Text.c_str(), DurationInSeconds, SizeMultiplier, SizeMultiplierVertical);
+}
+
+void DestroyHintText(void*& Handle)
+{
+	return InternalFunctions::I_DestroyHintText(Handle);
+}
+
 bool SetBlock(CoordinateInBlocks At, EBlockType NativeType)
 {
 	return SetBlock(At, BlockInfo(NativeType));
@@ -97,6 +107,11 @@ void RemoveFromInventory(BlockInfo Type, int Amount)
 wString GetWorldName()
 {
 	return wString(InternalFunctions::I_GetWorldName());
+}
+
+uint32_t GetWorldSeed()
+{
+	return InternalFunctions::I_GetWorldSeed();
 }
 
 float GetTimeOfDay()
@@ -261,6 +276,16 @@ wString GetThisModSaveFolderPath(wString ModName)
 {
 	wchar_t StringOut[1000];
 	InternalFunctions::I_GetThisModSaveFolderPath(ModName.c_str(), StringOut);
+
+	std::filesystem::create_directories(wString(StringOut));
+
+	return wString(StringOut);
+}
+
+wString GetThisModGlobalSaveFolderPath(wString ModName)
+{
+	wchar_t StringOut[1000];
+	InternalFunctions::I_GetThisModGlobalSaveFolderPath(ModName.c_str(), StringOut);
 
 	std::filesystem::create_directories(wString(StringOut));
 
