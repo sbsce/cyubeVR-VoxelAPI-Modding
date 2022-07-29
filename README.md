@@ -66,6 +66,8 @@ bool SetBlock(CoordinateInBlocks At, BlockInfo BlockType);
 BlockInfo GetAndSetBlock(CoordinateInBlocks At, BlockInfo BlockType);
 
 void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
+void* SpawnHintTextAdvanced(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
+void DestroyHintText(void*& Handle);
 
 CoordinateInCentimeters GetPlayerLocation();
 
@@ -102,6 +104,7 @@ std::vector<uint8_t> LoadModData(wString ModName);
 
 const wString& GetThisModInstallFolderPath();
 wString GetThisModSaveFolderPath(wString ModName);
+wString GetThisModGlobalSaveFolderPath(wString ModName);
 
 GameVersion GetGameVersionNumber();
 
