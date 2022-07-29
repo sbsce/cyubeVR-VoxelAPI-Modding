@@ -4,10 +4,15 @@
 
 #include "GameAPI.cpp"
 
+void ShowErrorMessage() 
+{
+	MessageBox(NULL, L"The game crashed while loading a mod.\n\nOne of the mods you have installed is incompatible with this version of the game.\n\nYou need to uninstall that mod, then the game will work.\n\nAfter you found out which mod causes this, you should tell the author of the mod about it so that they can fix it.", L"Error!", MB_OK);
+}
+
 #define RegisterFunction(FunctionName)  InternalFunctions::I_##FunctionName = (##FunctionName##_T) GetProcAddress(app, #FunctionName);		\
 										if (!InternalFunctions::I_##FunctionName) {															\
 											std::string ErrorString = GetLastErrorAsString();												\
-											__debugbreak();																					\
+											ShowErrorMessage(); __debugbreak();																\
 										};
 
 
@@ -19,7 +24,7 @@ void Internals::Init()
 
 	if (!app) {
 		std::string ErrorString = GetLastErrorAsString();
-		__debugbreak();
+		ShowErrorMessage(); __debugbreak();
 	}
 
 	RegisterFunction(Log);
@@ -71,8 +76,6 @@ void Internals::Init()
 	RegisterFunction(ReleaseSharedMemoryPointer);
 
 	std::string ErrorString = GetLastErrorAsString();
-
-	if (!InternalFunctions::I_Log) __debugbreak();
 }
 
 const char* Internals::GetName()
