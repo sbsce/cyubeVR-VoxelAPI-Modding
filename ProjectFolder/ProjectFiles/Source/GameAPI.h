@@ -67,7 +67,7 @@ using namespace ModAPI;
 *	SpawnHintTextAdvanced spawns a hint text exactly where you specify, while SpawnHintText spawns the hint text 20 cm above the location you specify.
 */
 	void  SpawnHintText(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
-	void* SpawnHintTextAdvanced(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1);
+	void* SpawnHintTextAdvanced(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier = 1, float SizeMultiplierVertical = 1, float FontSizeMultiplier = 1);
 
 	void  DestroyHintText(void*& Handle);
 

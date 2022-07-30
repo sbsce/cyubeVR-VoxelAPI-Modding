@@ -327,7 +327,7 @@ namespace ModAPI {
 	typedef bool (*SetBlock_T)(const ModAPI::CoordinateInBlocks& At, const ModAPI::BlockInfo& BlockType, ModAPI::BlockInfo& OutReplacedType);
 
 	typedef void (*SpawnHintText_T)(const ModAPI::CoordinateInCentimeters& At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical);
-	typedef void* (*SpawnHintTextAdvanced_T)(const ModAPI::CoordinateInCentimeters& At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical);
+	typedef void* (*SpawnHintTextAdvanced_T)(const ModAPI::CoordinateInCentimeters& At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical, float FontSizeMultiplier);
 	
 	typedef void (*DestroyHintText_T)(void*& Handle);
 

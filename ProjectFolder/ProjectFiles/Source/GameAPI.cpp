@@ -33,9 +33,9 @@ void SpawnHintText(CoordinateInCentimeters At, const wString& Text, float Durati
 	return InternalFunctions::I_SpawnHintText(At, Text.c_str(), DurationInSeconds, SizeMultiplier, SizeMultiplierVertical);
 }
 
-void* SpawnHintTextAdvanced(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical)
+void* SpawnHintTextAdvanced(CoordinateInCentimeters At, const wString& Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical, float FontSizeMultiplier)
 {
-	return InternalFunctions::I_SpawnHintTextAdvanced(At, Text.c_str(), DurationInSeconds, SizeMultiplier, SizeMultiplierVertical);
+	return InternalFunctions::I_SpawnHintTextAdvanced(At, Text.c_str(), DurationInSeconds, SizeMultiplier, SizeMultiplierVertical, FontSizeMultiplier);
 }
 
 void DestroyHintText(void*& Handle)
