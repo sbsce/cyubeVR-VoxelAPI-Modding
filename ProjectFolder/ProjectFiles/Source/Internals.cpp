@@ -45,6 +45,7 @@ void Internals::Init()
 	RegisterFunction(GetIndexFingerTipLocation);
 
 	RegisterFunction(SpawnBlockItem);
+	RegisterFunction(ConsumeBlockItems);
 
 	RegisterFunction(AddToInventory);
 	RegisterFunction(RemoveFromInventory);

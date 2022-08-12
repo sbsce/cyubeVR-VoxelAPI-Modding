@@ -299,7 +299,6 @@ namespace ModAPI {
 
 	struct BlockInfo 
 	{
-
 		EBlockType Type = EBlockType::Invalid;
 		ERotation Rotation;							// Only used for torches
 		UniqueID CustomBlockID = 0;					// Only used if the Type is EBlockType::ModBlock
@@ -320,6 +319,12 @@ namespace ModAPI {
 	};
 	static_assert(std::is_standard_layout<BlockInfo>());
 
+	struct BlockInfoWithLocation 
+	{
+		BlockInfo Info;
+		CoordinateInCentimeters Location;
+	};
+	static_assert(std::is_standard_layout<BlockInfoWithLocation>());
 
 	typedef void (*Log_T)(const wchar_t* String);
 
@@ -343,6 +348,7 @@ namespace ModAPI {
 	typedef ModAPI::CoordinateInCentimeters (*GetIndexFingerTipLocation_T)(bool LeftHand);
 
 	typedef void (*SpawnBlockItem_T)(const ModAPI::CoordinateInCentimeters& At, const ModAPI::BlockInfo& Type);
+	typedef ModAPI::BlockInfoWithLocation* (*ConsumeBlockItems_T)(const ModAPI::CoordinateInCentimeters& At, ModAPI::BlockInfo* TypeArrayIn, uint32_t TypeArrayInSize, int32_t RadiusInCentimeters, ModAPI::CoordinateInCentimeters BoxExtentInCentimeters, int32_t Amount, bool bOnlyTry, uint32_t* ArraySizeOut);
 
 	typedef void (*AddToInventory_T)(const ModAPI::BlockInfo& Type, uint32_t Amount);
 	typedef void (*RemoveFromInventory_T)(const ModAPI::BlockInfo& Type, uint32_t Amount);
@@ -396,6 +402,7 @@ namespace ModAPI {
 		InternalFunction(GetIndexFingerTipLocation);
 
 		InternalFunction(SpawnBlockItem);
+		InternalFunction(ConsumeBlockItems);
 
 		InternalFunction(AddToInventory);
 		InternalFunction(RemoveFromInventory);

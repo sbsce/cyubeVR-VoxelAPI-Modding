@@ -105,9 +105,27 @@ using namespace ModAPI;
 	CoordinateInCentimeters GetIndexFingerTipLocation(bool LeftHand);
 
 /*
-*	Spawn a block item (a small cube you can craft with etc).
+*	Spawn a block item (a small cube you can craft with etc) at the specified location.
 */
 	void SpawnBlockItem(CoordinateInCentimeters At, BlockInfo Type);
+
+/*
+*	Consume one or multiple block items (a small cube you can craft with etc) in the specified area.
+* 
+*	In the "Type" array you can define which types of block items will be consumed. An empty "Type" array means that all types will be consumed.
+* 
+*	To define the area in which you want to consume block items, you can use either "RadiusInCentimeters" or "BoxExtentInCentimeters". 
+*	If "RadiusInCentimeters" is > 0, that is what is used to define the area, otherwise the "BoxExtentInCentimeters" is used.
+* 
+*	With "Amount" you can define how many block items you want to consume. 
+* 
+*	If you set "bOnlyTry" to true, the function will not actually consume (destroy) any block items, but the return data will still be the same, showing you which
+*	block items were found. So setting "bOnlyTry" to true is essentially a dry run.
+* 
+*	The return array contains all the block items that were consumed (or found). The size of the array that is returned will be at most the "Amount" you specified,
+*	but might also be less than the "Amount" you specified, if fewer block items were found in the area you defined.
+*/
+	std::vector<BlockInfoWithLocation> ConsumeBlockItems(CoordinateInCentimeters At, std::vector<BlockInfo> Type, int RadiusInCentimeters, CoordinateInCentimeters BoxExtentInCentimeters, int Amount, bool bOnlyTry = false);
 
 /*
 *	Add or remove one or multiple items to/from the inventory. 
@@ -224,3 +242,19 @@ using namespace ModAPI;
 *	If both CreateIfNotExist and WaitUntilExist are false, you need to check if Handle.Valid == true before accessing the pointer in it. Handle.Valid will be false then if the key does not exist.
 */
 	ScopedSharedMemoryHandle GetSharedMemoryPointer(wString Key, bool CreateIfNotExist, bool WaitUntilExist);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include "GameAPITemplates.h"
