@@ -79,6 +79,7 @@ CoordinateInCentimeters GetHandLocation(bool LeftHand);
 CoordinateInCentimeters GetIndexFingerTipLocation(bool LeftHand);
 
 void SpawnBlockItem(CoordinateInCentimeters At, BlockInfo Type);
+std::vector<BlockInfoWithLocation> ConsumeBlockItems(CoordinateInCentimeters At, std::vector<BlockInfo> Type, int RadiusInCentimeters, CoordinateInCentimeters BoxExtentInCentimeters, int Amount, bool bOnlyTry = false);
 
 void AddToInventory(BlockInfo Type, int Amount);
 void RemoveFromInventory(BlockInfo Type, int Amount);
