@@ -132,9 +132,9 @@ Of course, you also have access to the whole C/C++ standard library and any othe
 
 # How to start using the VoxelAPI
 
-## Step 1: Click the "Download ZIP" download button here in GitHub
+## Step 1: Download the latest release of this VoxelAPI project as a zip file
 
-![TutorialDownload](https://user-images.githubusercontent.com/38058738/162877620-ae9bda17-17b5-4d7e-a864-e696389de2c0.png)
+[Click here to download it.](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/archive/refs/tags/Update-52.zip)
 
 ## Step 2: Extract the downloaded ZIP somewhere
 
