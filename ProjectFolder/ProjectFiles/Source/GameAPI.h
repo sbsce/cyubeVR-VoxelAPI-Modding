@@ -29,7 +29,9 @@ using namespace ModAPI;
 * 
 *	The coordinate needs to be in the area of chunks that is currently loaded in memory, otherwise the return value is invalid.
 *	If you might call this further away from the player, call .IsValid() on the return value to check that. 
-	The default radius that is loaded around the player is 300 meters (600 blocks).
+*	The default radius that is loaded around the player is 300 meters (600 blocks).
+*
+*	Also, it is only valid to call this with a Z location within 0-799. The world in cyubeVR is 800 blocks tall, you can't get a block outside of those bounds.	
 */
 	BlockInfo GetBlock(CoordinateInBlocks At);
 
@@ -42,6 +44,9 @@ using namespace ModAPI;
 *	To delete a block, set it to the type EBlockType::Air
 * 
 *	The Rotation value is only necessary for torches. For all other types, you can ignore it.
+* 
+*	It is only allowed to call SetBlock with a Z location within 0-799. The world in cyubeVR is 800 blocks tall, you can't set a block outside of those bounds.
+	Calling SetBlock with a Z location outside of 0-799 will cause a crash with a helpful crash message explaining that a mod tried to do something at an invalid Z coordinate.
 */
 	bool SetBlock(CoordinateInBlocks At, EBlockType NativeType);
 	bool SetBlock(CoordinateInBlocks At, EBlockType NativeType, ERotation Rotation);
@@ -95,7 +100,15 @@ using namespace ModAPI;
 	DirectionVectorInCentimeters GetPlayerViewDirection();
 
 /*
+*	Sets the current player view direction as a unit vector. Changes the direction the player is facing. Only X and Y is considered.
+*/
+	void SetPlayerViewDirection(DirectionVectorInCentimeters To);
+
+/*
 *	Returns the current location of the hand of the player.
+* 
+*	Be careful if using the location returned by this in GetBlock or SetBlock! 
+*	The hand location might be out of bounds of the voxel world (not within 0-799 blocks in Z), using such an invalid location would cause a crash in GetBlock/SetBlock.
 */
 	CoordinateInCentimeters GetHandLocation(bool LeftHand);
 

@@ -79,6 +79,11 @@ DirectionVectorInCentimeters GetPlayerViewDirection()
 	return InternalFunctions::I_GetPlayerViewDirection();
 }
 
+void SetPlayerViewDirection(DirectionVectorInCentimeters To)
+{
+	return InternalFunctions::I_SetPlayerViewDirection(To);
+}
+
 CoordinateInCentimeters GetHandLocation(bool LeftHand)
 {
 	return InternalFunctions::I_GetHandLocation(LeftHand);

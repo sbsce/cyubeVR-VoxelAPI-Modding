@@ -169,7 +169,7 @@ namespace ModAPI {
 			return CoordinateInCentimeters(X - i.X, Y - i.Y, Z - i.Z);
 		}
 
-		constexpr bool operator==(const CoordinateInCentimeters i) const {
+		constexpr bool operator==(const CoordinateInCentimeters& i) const {
 			return (X == i.X && Y == i.Y && Z == i.Z);
 		}
 
@@ -207,11 +207,11 @@ namespace ModAPI {
 			return CoordinateInCentimeters(*this) + i;
 		}
 
-		constexpr CoordinateInCentimeters operator-(const CoordinateInCentimeters i) const {
-			return CoordinateInCentimeters(*this) - i;
-		}
+		//constexpr CoordinateInCentimeters operator-(const CoordinateInCentimeters i) const {
+		//	return CoordinateInCentimeters(*this) - i;
+		//}
 
-		constexpr bool operator==(const CoordinateInBlocks i) const {
+		constexpr bool operator==(const CoordinateInBlocks& i) const {
 			return (X == i.X && Y == i.Y && Z == i.Z);
 		}
 
@@ -342,6 +342,7 @@ namespace ModAPI {
 	typedef ModAPI::CoordinateInCentimeters(*GetPlayerLocationHead_T)();
 
 	typedef ModAPI::DirectionVectorInCentimeters (*GetPlayerViewDirection_T)();
+	typedef void (*SetPlayerViewDirection_T)(const ModAPI::DirectionVectorInCentimeters& To);
 
 	typedef ModAPI::CoordinateInCentimeters (*GetHandLocation_T)(bool LeftHand);
 
@@ -398,6 +399,7 @@ namespace ModAPI {
 
 		InternalFunction(GetPlayerLocationHead);
 		InternalFunction(GetPlayerViewDirection);
+		InternalFunction(SetPlayerViewDirection);
 		InternalFunction(GetHandLocation);
 		InternalFunction(GetIndexFingerTipLocation);
 

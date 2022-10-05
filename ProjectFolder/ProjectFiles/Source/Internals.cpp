@@ -39,7 +39,9 @@ void Internals::Init()
 	RegisterFunction(GetPlayerLocation);
 	RegisterFunction(SetPlayerLocation);
 	RegisterFunction(GetPlayerLocationHead);
+
 	RegisterFunction(GetPlayerViewDirection);
+	RegisterFunction(SetPlayerViewDirection);
 
 	RegisterFunction(GetHandLocation);
 	RegisterFunction(GetIndexFingerTipLocation);
