@@ -27,7 +27,7 @@ Both the [source code](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/blob/ma
 
 # Overview of how the VoxelAPI works
 
-The way the cyubeVR VoxelAPI works is that there are several `Event_` functions automatically called by the game for any loaded VoxelAPI mod. You put in your own code in one (or multiple) of those `Event_` functions, and you are able to call functions interacting with the game, like `SetBlock` or `GetBlock`. 
+The way the cyubeVR VoxelAPI works is that there are several `Event_` functions automatically called by the game for any loaded VoxelAPI mod. You put in your own code in one (or multiple) of those `Event_` functions, and you are able to call functions interacting with the game, like `SetBlock` or `GetBlock`. The coordinate system is Z-Up.
 
 These are the `Event_` functions currently available to be used:
 
