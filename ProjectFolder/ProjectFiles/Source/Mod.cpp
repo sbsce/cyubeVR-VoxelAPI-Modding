@@ -64,7 +64,9 @@ void Event_OnLoad(bool CreatedNewWorld)
 
 }
 
-// Run once when the world is exited
+// Run once when the world is exited. You cannot rely on this ever being called - this is only called if the player exits the game through the "Back to Main Menu" button, 
+// not when the game is closed through the "Exit Game" button in SteamVR or when it crashes. This function is useful for e.g. freeing manually allocated memory.
+// Do not use this for function for something like saving data. If you need to save data, do it regularly in Event_Tick.
 void Event_OnExit()
 {
 	
