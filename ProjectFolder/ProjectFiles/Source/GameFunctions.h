@@ -13,13 +13,14 @@
 
 namespace ModAPI {
 
+	// Unless mentioned otherwise or named "Unused", the type can exist as a block in the world. Foliage can not be spawned through the VoxelAPI.
 	enum class EBlockType : uint8_t {
-		Stone,
+		Stone,				// This is naturally occuring stone, this should never exist as block items but only as blocks. After mining it becomes "StoneMined" type.
 		Grass,
 		Dirt,
 		Air,
-		BottomStone,
-		GrassFoliage,
+		BottomStone,		// The block type that the indestructible bottom layer of the world is made of
+		GrassFoliage,		// This is foliage, not a block
 		TreeWood,
 		Unused1,
 		Unused2,
@@ -28,88 +29,88 @@ namespace ModAPI {
 		Invalid,
 		Ore_Coal,
 		Ore_Iron,
-		TreeRoot,
+		TreeRoot,			// This is not used by the game at all
 		Torch,
-		Flower1,
-		Flower2,
-		T_Stick,
-		T_PickAxe_Stone,
-		T_Axe_Stone,
-		T_Shovel_Stone,
-		Nugget_Copper,
-		Nugget_Gold,
-		Nugget_Coal,
-		Ore_Copper,
+		Flower1,			// This is foliage, not a block
+		Flower2,			// This is foliage, not a block
+		T_Stick,			// This is a tool, not a block
+		T_PickAxe_Stone,	// This is a tool, not a block
+		T_Axe_Stone,		// This is a tool, not a block
+		T_Shovel_Stone,		// This is a tool, not a block
+		Nugget_Copper,		// This can only exist as an item, not as a block
+		Nugget_Gold,		// This can only exist as an item, not as a block
+		Nugget_Coal,		// This can only exist as an item, not as a block
+		Ore_Copper,			
 		Ore_Gold,
 		Unused4,
-		T_PickAxe_Copper,
-		T_Axe_Copper,
-		T_Shovel_Copper,
+		T_PickAxe_Copper,	// This is a tool, not a block
+		T_Axe_Copper,		// This is a tool, not a block
+		T_Shovel_Copper,	// This is a tool, not a block
 		Unused5,
 		TreeWoodBright,
 		WoodPlankBright,
 		WoodPlank,
-		StoneMined,
-		Flower3,
+		StoneMined,			// If you ever spawn a stone item, or add stone to the inventory, it should be of this type
+		Flower3,			// This is foliage, not a block
 		TorchBlue,
-		DyeBlue,
-		Flower4,
+		DyeBlue,			// This can only exist as an item, not as a block
+		Flower4,			// This is foliage, not a block
 		TorchGreen,
-		DyeGreen,
-		Compass,
-		Chest1,
-		SpecialBlockObject,
-		MeshObject,
+		DyeGreen,			// This can only exist as an item, not as a block
+		Compass,			// This can only exist as an item in the inventory
+		Chest1,				// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		SpecialBlockObject,	// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		MeshObject,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
 		Wallstone,
 		Flagstone,
-		DyeRed,
+		DyeRed,				// This can only exist as an item, not as a block
 		TorchRed,
-		Chair1,
-		Chair1Birch,
+		Chair1,				// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		Chair1Birch,		// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
 		WoodScaffolding,
-		Arrow,
-		WallmountCopper,
-		Cactus,
-		DesertGrass,
-		FrameWood,
-		FrameGold,
-		FrameCopper,
-		T_Sledgehammer_Copper,
+		Arrow,				// This is unused
+		WallmountCopper,	// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		Cactus,				// This is foliage, not a block
+		DesertGrass,		// This is foliage, not a block
+		FrameWood,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		FrameGold,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		FrameCopper,		// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		T_Sledgehammer_Copper,	// This is a tool, not a block
 		TorchRainbow,
-		DyeRainbow,
-		FlowerRainbow,
-		DyeWhite,
+		DyeRainbow,				// This can only exist as an item, not as a block
+		FlowerRainbow,			// This is foliage, not a block
+		DyeWhite,				// This can only exist as an item, not as a block
 		Unused6,
-		ModBlock,
+		ModBlock,			// Use this together with the UniqueID CustomBlockID
 		CrystalBlock,
-		Crystal,
-		Furnace,
-		FurnaceMoldIron,
-		FlintStone,
-		DryGrass,
-		IngotIron,
-		T_PickAxe_Iron,
-		T_Sledgehammer_Iron,
-		T_Axe_Iron,
-		T_Shovel_Iron,
-		WoodStool,
-		WoodTable1,
-		WoodTable2,
-		WoodCarafe,
-		WoodBench1,
-		WoodBarrel,
-		WoodPost,
-		MetalPod,
-		WoodBench2,
-		WoodBench3,
-		SandbagPile,
+		Crystal,			// This can only exist as an item, not as a block
+		Furnace,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		FurnaceMoldIron,	// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		FlintStone,			// This can only exist as an item, not as a block
+		DryGrass,			// This can only exist as an item, not as a block
+		IngotIron,			// This can only exist as an item, not as a block
+		T_PickAxe_Iron,		// This is a tool, not a block
+		T_Sledgehammer_Iron,	// This is a tool, not a block
+		T_Axe_Iron,				// This is a tool, not a block
+		T_Shovel_Iron,			// This is a tool, not a block
+		WoodStool,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		WoodTable1,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		WoodTable2,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		WoodCarafe,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		WoodBench1,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		WoodBarrel,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		WoodPost,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		MetalPod,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		WoodBench2,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		WoodBench3,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		SandbagPile,		// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
 		GlassBlock,
-		ModBlockTransparent,
-		GlassIngot,
-		LootableInventory,
-		RespawnTorch,
-		T_Bow,
-		SmoothbrainStatue,
+		ModBlockTransparent,// This is still unused
+		GlassIngot,			// This can only exist as an item, not as a block
+		LootableInventory,	// This is a special type that can't be used for anything
+		RespawnTorch,		
+		T_Bow,				// This is a tool, not a block
+		SmoothbrainStatue,	// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
 		ShimmerstoneBlue,
 		ShimmerstoneGold,
 		ShimmerstoneWhite,
@@ -127,7 +128,16 @@ namespace ModAPI {
 		TorchCloakedRed,
 		TorchCloakedRainbow,
 		Cloakstone,
-		Nugget_Cloak,
+		Nugget_Cloak,		// This can only exist as an item, not as a block
+		ChestShelf1,		// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		Chair2,				// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		Chair2Bright,		// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		Statue1,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		Statue2,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		CouchingPlaceSimple,	// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		CouchingPlaceFancy,		// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		StonePedestal,			// This is a mesh object, not a block. Cannot be set/get through VoxelAPI.
+		WaterDecorative,
 		MAX_BLOCKTYPE
 	};
 
@@ -160,7 +170,7 @@ namespace ModAPI {
 		wchar_t* Key;
 		bool Valid;
 
-		ScopedSharedMemoryHandle(const SharedMemoryHandleC& i) : Pointer(*i.Pointer), Key(i.Key), Valid(i.Valid) {}			
+		ScopedSharedMemoryHandle(const SharedMemoryHandleC& i) : Pointer(*i.Pointer), Key(i.Key), Valid(i.Valid) {}
 
 		~ScopedSharedMemoryHandle(); // Declared here, defined in GameAPI.cpp
 
@@ -238,7 +248,7 @@ namespace ModAPI {
 		}
 
 		double GetLength() const {
-			return sqrt(X * X + Y * Y + Z * Z);
+			return sqrt(double(X * X + Y * Y + Z * Z));
 		}
 
 		constexpr CoordinateInBlocks() = default;
@@ -289,7 +299,7 @@ namespace ModAPI {
 			CoordinateInCentimeters Value;
 			Value.X = lround(X);
 			Value.Y = lround(Y);
-			Value.Z = (uint16_t) lround(Z);
+			Value.Z = (uint16_t)lround(Z);
 			return Value;
 		}
 
@@ -315,7 +325,7 @@ namespace ModAPI {
 
 	typedef uint32_t UniqueID;
 
-	struct BlockInfo 
+	struct BlockInfo
 	{
 		EBlockType Type = EBlockType::Invalid;
 		ERotation Rotation;							// Only used for torches
@@ -337,7 +347,7 @@ namespace ModAPI {
 	};
 	static_assert(std::is_standard_layout<BlockInfo>());
 
-	struct BlockInfoWithLocation 
+	struct BlockInfoWithLocation
 	{
 		BlockInfo Info;
 		CoordinateInCentimeters Location;
@@ -346,25 +356,25 @@ namespace ModAPI {
 
 	typedef void (*Log_T)(const wchar_t* String);
 
-	typedef BlockInfo (*GetBlock_T)(const ModAPI::CoordinateInBlocks& At);
+	typedef BlockInfo(*GetBlock_T)(const ModAPI::CoordinateInBlocks& At);
 	typedef bool (*SetBlock_T)(const ModAPI::CoordinateInBlocks& At, const ModAPI::BlockInfo& BlockType, ModAPI::BlockInfo& OutReplacedType);
 
 	typedef void (*SpawnHintText_T)(const ModAPI::CoordinateInCentimeters& At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical);
 	typedef void* (*SpawnHintTextAdvanced_T)(const ModAPI::CoordinateInCentimeters& At, const wchar_t* Text, float DurationInSeconds, float SizeMultiplier, float SizeMultiplierVertical, float FontSizeMultiplier);
-	
+
 	typedef void (*DestroyHintText_T)(void*& Handle);
 
-	typedef ModAPI::CoordinateInCentimeters (*GetPlayerLocation_T)();
+	typedef ModAPI::CoordinateInCentimeters(*GetPlayerLocation_T)();
 	typedef bool (*SetPlayerLocation_T)(const ModAPI::CoordinateInCentimeters& To);
 
 	typedef ModAPI::CoordinateInCentimeters(*GetPlayerLocationHead_T)();
 
-	typedef ModAPI::DirectionVectorInCentimeters (*GetPlayerViewDirection_T)();
+	typedef ModAPI::DirectionVectorInCentimeters(*GetPlayerViewDirection_T)();
 	typedef void (*SetPlayerViewDirection_T)(const ModAPI::DirectionVectorInCentimeters& To);
 
-	typedef ModAPI::CoordinateInCentimeters (*GetHandLocation_T)(bool LeftHand);
+	typedef ModAPI::CoordinateInCentimeters(*GetHandLocation_T)(bool LeftHand);
 
-	typedef ModAPI::CoordinateInCentimeters (*GetIndexFingerTipLocation_T)(bool LeftHand);
+	typedef ModAPI::CoordinateInCentimeters(*GetIndexFingerTipLocation_T)(bool LeftHand);
 
 	typedef void (*SpawnBlockItem_T)(const ModAPI::CoordinateInCentimeters& At, const ModAPI::BlockInfo& Type);
 	typedef ModAPI::BlockInfoWithLocation* (*ConsumeBlockItems_T)(const ModAPI::CoordinateInCentimeters& At, ModAPI::BlockInfo* TypeArrayIn, uint32_t TypeArrayInSize, int32_t RadiusInCentimeters, ModAPI::CoordinateInCentimeters BoxExtentInCentimeters, int32_t Amount, bool bOnlyTry, uint32_t* ArraySizeOut);
@@ -373,7 +383,7 @@ namespace ModAPI {
 	typedef void (*RemoveFromInventory_T)(const ModAPI::BlockInfo& Type, uint32_t Amount);
 
 	typedef const wchar_t* (*GetWorldName_T)();
-	typedef uint32_t (*GetWorldSeed_T)();
+	typedef uint32_t(*GetWorldSeed_T)();
 
 	typedef float (*GetTimeOfDay_T)();
 	typedef void (*SetTimeOfDay_T)(float NewTime);
@@ -393,15 +403,15 @@ namespace ModAPI {
 
 	typedef void (*GetThisModSaveFolderPath_T) (const wchar_t* ModName, wchar_t* PathOut);
 	typedef void (*GetThisModGlobalSaveFolderPath_T) (const wchar_t* ModName, wchar_t* PathOut);
-	typedef ModAPI::GameVersion (*GetGameVersionNumber_T) ();
+	typedef ModAPI::GameVersion(*GetGameVersionNumber_T) ();
 
-	typedef SharedMemoryHandleC (*GetSharedMemoryPointer_T)(const wchar_t* Key, bool CreateIfNotExist, bool WaitUntilExist);
+	typedef SharedMemoryHandleC(*GetSharedMemoryPointer_T)(const wchar_t* Key, bool CreateIfNotExist, bool WaitUntilExist);
 	typedef void (*ReleaseSharedMemoryPointer_T)(ModAPI::SharedMemoryHandleC& Handle);
 
 
 	namespace InternalFunctions {
 
-		#define InternalFunction(FunctionName) inline FunctionName##_T I_##FunctionName
+#define InternalFunction(FunctionName) inline FunctionName##_T I_##FunctionName
 
 		InternalFunction(Log);
 
