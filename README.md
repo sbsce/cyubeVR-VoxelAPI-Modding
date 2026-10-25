@@ -61,6 +61,7 @@ BlockInfo GetBlock(CoordinateInBlocks At);
 bool SetBlock(CoordinateInBlocks At, EBlockType NativeType);
 bool SetBlock(CoordinateInBlocks At, EBlockType NativeType, ERotation Rotation);
 bool SetBlock(CoordinateInBlocks At, UniqueID CustomBlockID);
+bool SetBlock(CoordinateInBlocks At, UniqueID CustomBlockID, ERotation Rotation);
 bool SetBlock(CoordinateInBlocks At, BlockInfo BlockType);
 
 BlockInfo GetAndSetBlock(CoordinateInBlocks At, BlockInfo BlockType);
@@ -122,6 +123,11 @@ template<int32_t Min, int32_t Max> int32_t GetRandomInt();
 std::vector<CoordinateInBlocks> GetAllCoordinatesInBox(CoordinateInBlocks At, CoordinateInBlocks BoxExtent;
 
 std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);
+
+ERotation CombineRotations(ERotation First, ERotation Then);
+ERotation InverseRotation(ERotation Rotation);
+CoordinateInBlocks RotateOffset(ERotation Rotation, CoordinateInBlocks Offset);
+bool IsMirrorRotation(ERotation Rotation);
 ```
 
 To see the whole list of API functions including comments explaining what they do, take a look at the [GameAPI.h header file here](https://github.com/sbsce/cyubeVR-VoxelAPI-Modding/blob/main/ProjectFolder/ProjectFiles/Source/GameAPI.h).
@@ -129,6 +135,39 @@ To see the whole list of API functions including comments explaining what they d
 More functions to interact with the game can be added at request, so if there is something you would like to have access to that is not yet available, feel free to request it in the #Modding channel in the [official cyubeVR Discord](https://discord.gg/cyubeVR) or open an issue here on this repository.
 
 Of course, you also have access to the whole C/C++ standard library and any other C/C++ library you might want to include in your code.
+
+## Rotating blocks
+
+Wood, planks, wallstone, big wallstone, flagstone, scaffolding and custom blocks can be placed rotated. The rotation is the `Rotation` of a `BlockInfo` - the same field that holds the direction of a torch:
+
+```cpp
+SetBlock(At, EBlockType::TreeWood, ERotation::TurnY90);       // a log lying along X
+SetBlock(At, EBlockType::TreeWood, ERotation::TurnX90);       // a log lying along Y
+SetBlock(At, EBlockType::Wallstone, ERotation::TurnZ90);      // turned a quarter about the vertical (clockwise seen from above)
+SetBlock(At, 50000, ERotation::TurnZ180);                     // a custom block, turned half about the vertical
+```
+
+`ERotation` names the most useful rotations: `TurnX90`, `TurnX180`, `TurnX270`, `TurnY90`, `TurnY180`, `TurnY270`, `TurnZ90`, `TurnZ180`, `TurnZ270` (quarter, half and three-quarter turns about the X, Y or Z axis; Z is up) and `MirrorX`, `MirrorY`, `MirrorZ` (mirror images). Together with `ERotation::None` (not rotated) there are 48 different ways to place a block - all 24 ways to turn a cube and their 24 mirror images. Combine the named ones to get any of them:
+
+```cpp
+ERotation LogAlongY = CombineRotations(ERotation::TurnY90, ERotation::TurnZ90); // a log along X (TurnY90), then a quarter turn about the vertical
+ERotation Back = InverseRotation(ERotation::TurnZ90);                                      // ERotation::TurnZ270
+```
+
+`GetBlock` returns the rotation of a block, and so does every `BlockInfo` the game hands to your mod (`GetAndSetBlock`, `Event_AnyBlockPlaced`, ...). A `BlockInfo` you got from the game places the block exactly as it was, rotation included - copying blocks needs no extra work.
+
+To build a whole structure turned (for example a house that faces the player), turn each block's offset from the structure's origin with `RotateOffset`, and each block's own rotation with `CombineRotations`:
+
+```cpp
+ERotation Turn = ERotation::TurnZ90;   // the whole structure, a quarter turn about the vertical
+for (const auto& Part : MyStructure) { // Part.Offset (CoordinateInBlocks), Part.Type, Part.Rotation as built facing +X
+	SetBlock(Origin + RotateOffset(Turn, Part.Offset), BlockInfo(Part.Type, CombineRotations(Part.Rotation, Turn)));
+}
+```
+
+`RotateOffset(Rotation, CoordinateInBlocks(0, 0, 1))` is the direction the top of a block with that rotation faces.
+
+Blocks that cannot be rotated (stone, ores, soil, sand, glass, water, ...) are placed unrotated whatever rotation you give them; torches only take their own directions (`ERotation::Up`, `Right`, ...). A custom block can be rotated unless the `Properties.json` of the block says `"AllowRotation": false`. Mods made before rotations existed keep working unchanged: they never set a rotation, so they place every block unrotated as before.
 
 # How to start using the VoxelAPI
 

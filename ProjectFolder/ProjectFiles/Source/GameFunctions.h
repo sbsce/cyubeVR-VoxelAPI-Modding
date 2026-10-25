@@ -6,6 +6,7 @@
 #include <vector>
 
 #include <cstdint>
+#include <cstddef>
 #include <random>
 #include <limits>
 
@@ -80,7 +81,7 @@ namespace ModAPI {
 		DyeRainbow,				// This can only exist as an item, not as a block
 		FlowerRainbow,			// This is foliage, not a block
 		DyeWhite,				// This can only exist as an item, not as a block
-		Unused6,
+		BigWallstone,			// Wallstone with stones twice as large
 		ModBlock,			// Use this together with the UniqueID CustomBlockID
 		CrystalBlock,
 		Crystal,			// This can only exist as an item, not as a block
@@ -143,6 +144,7 @@ namespace ModAPI {
 
 	enum class ERotation : uint8_t
 	{
+		// Torches: the direction they point to. Only torches use these, every other block is placed unrotated with them.
 		Right,
 		Left,
 		Forward,
@@ -150,7 +152,26 @@ namespace ModAPI {
 		Up,
 		Down,
 
-		None
+		None,				// Not rotated
+
+		// (5.8) Blocks that can be rotated: wood, planks, wallstone, big wallstone, flagstone, scaffolding, and custom blocks unless their
+		// Properties.json says "AllowRotation": false. The 47 values after None are all the other ways a cube can be turned or mirrored
+		// (23 turns, 24 mirror images); the most useful ones have names here, CombineRotations (below) makes all others. Each comment
+		// says where the block's own X, Y and Z axes point to in the world. GetBlock and the block events give a rotated block's value.
+		// Blocks that cannot be rotated are placed unrotated with these values (they get None), torches not at all (they need one of
+		// the six directions).
+		MirrorX = 7,		// X->-X Y->+Y Z->+Z	mirrored along X
+		MirrorY = 8,		// X->+X Y->-Y Z->+Z	mirrored along Y
+		TurnZ180 = 9,		// X->-X Y->-Y Z->+Z
+		MirrorZ = 10,		// X->+X Y->+Y Z->-Z	mirrored along Z (upside down, mirrored)
+		TurnY180 = 11,		// X->-X Y->+Y Z->-Z	upside down
+		TurnX180 = 12,		// X->+X Y->-Y Z->-Z	upside down
+		TurnX90 = 16,		// X->+X Y->+Z Z->-Y	a quarter turn about X: a log lying along Y
+		TurnX270 = 18,		// X->+X Y->-Z Z->+Y
+		TurnZ90 = 23,		// X->+Y Y->-X Z->+Z	a quarter turn about the vertical, clockwise seen from above
+		TurnZ270 = 24,		// X->-Y Y->+X Z->+Z	a quarter turn about the vertical, counterclockwise seen from above
+		TurnY270 = 47,		// X->+Z Y->+Y Z->-X
+		TurnY90 = 50,		// X->-Z Y->+Y Z->+X	a quarter turn about Y: a log lying along X
 	};
 
 	struct GameVersion {
@@ -328,7 +349,7 @@ namespace ModAPI {
 	struct BlockInfo
 	{
 		EBlockType Type = EBlockType::Invalid;
-		ERotation Rotation;							// Only used for torches
+		ERotation Rotation;							// Torches: their direction. (5.8) Other blocks: their rotation, ERotation::None if not rotated
 		UniqueID CustomBlockID = 0;					// Only used if the Type is EBlockType::ModBlock
 
 		constexpr BlockInfo() : Type(EBlockType::Invalid), Rotation(ERotation::None), CustomBlockID(0) {}
@@ -339,6 +360,8 @@ namespace ModAPI {
 
 		constexpr BlockInfo(UniqueID CustomBlockID_) : Type(EBlockType::ModBlock), Rotation(ERotation::None), CustomBlockID(CustomBlockID_) {}
 
+		constexpr BlockInfo(UniqueID CustomBlockID_, ERotation Rotation_) : Type(EBlockType::ModBlock), Rotation(Rotation_), CustomBlockID(CustomBlockID_) {}
+
 		constexpr BlockInfo(EBlockType Type_, ERotation Rotation_, UniqueID CustomBlockID_) : Type(Type_), Rotation(Rotation_), CustomBlockID(CustomBlockID_) {}
 
 		bool IsValid() {
@@ -346,6 +369,95 @@ namespace ModAPI {
 		}
 	};
 	static_assert(std::is_standard_layout<BlockInfo>());
+	// Mods built against older headers read and write BlockInfo with this same layout
+	static_assert(sizeof(BlockInfo) == 8 && offsetof(BlockInfo, Rotation) == 1 && offsetof(BlockInfo, CustomBlockID) == 4, "the mod API's BlockInfo layout");
+
+	// (5.8) Block rotations (ERotation::None and the 47 values after it; torch directions count as None). Each one is a signed
+	// permutation matrix M that turns the block's own axes into world axes (world = M * local): GetRotationIndex(Rotation) is
+	// PermutationIndex * 8 + SignBits, where row i of M has its nonzero entry in column RotationPermutations[PermutationIndex][i],
+	// negative if bit i of SignBits is set.
+	inline constexpr uint8_t RotationPermutations[6][3] = { { 0, 1, 2 }, { 0, 2, 1 }, { 1, 0, 2 }, { 1, 2, 0 }, { 2, 0, 1 }, { 2, 1, 0 } };
+
+	// Whether Rotation is None or one of the 47 rotations of blocks, not a torch direction
+	constexpr bool IsBlockRotation(ERotation Rotation)
+	{
+		return uint8_t(Rotation) >= uint8_t(ERotation::None) && uint8_t(Rotation) < uint8_t(ERotation::None) + 48;
+	}
+
+	// 0 (None) to 47, 0 for torch directions
+	constexpr uint8_t GetRotationIndex(ERotation Rotation)
+	{
+		return IsBlockRotation(Rotation) ? uint8_t(uint8_t(Rotation) - uint8_t(ERotation::None)) : 0;
+	}
+
+	// The rotation of an index 0 to 47
+	constexpr ERotation GetRotationFromIndex(uint8_t Index)
+	{
+		return ERotation(uint8_t(uint8_t(ERotation::None) + Index));
+	}
+
+	// A block rotated by First and then by Then. Example: CombineRotations(ERotation::TurnX90, ERotation::TurnZ90) is a log lying along
+	// Y (TurnX90) turned a quarter about the vertical, so it lies along X.
+	constexpr ERotation CombineRotations(ERotation First, ERotation Then)
+	{
+		const uint8_t A = GetRotationIndex(Then);
+		const uint8_t B = GetRotationIndex(First);
+		const uint8_t* PA = RotationPermutations[A / 8];
+		const uint8_t* PB = RotationPermutations[B / 8];
+		uint8_t P[3] = {};
+		uint8_t Signs = 0;
+		for (int I = 0; I < 3; ++I) {
+			P[I] = PB[PA[I]];
+			Signs |= uint8_t((((A >> I) ^ (B >> PA[I])) & 1) << I);
+		}
+		uint8_t PermutationIndex = 0;
+		while (RotationPermutations[PermutationIndex][0] != P[0] || RotationPermutations[PermutationIndex][1] != P[1]) {
+			++PermutationIndex;
+		}
+		return GetRotationFromIndex(uint8_t(PermutationIndex * 8 + Signs));
+	}
+
+	// The rotation that undoes Rotation: CombineRotations(Rotation, InverseRotation(Rotation)) is ERotation::None
+	constexpr ERotation InverseRotation(ERotation Rotation)
+	{
+		const uint8_t A = GetRotationIndex(Rotation);
+		const uint8_t* PA = RotationPermutations[A / 8];
+		uint8_t P[3] = {};
+		uint8_t Signs = 0;
+		for (int I = 0; I < 3; ++I) {
+			P[PA[I]] = uint8_t(I);
+			Signs |= uint8_t(((A >> I) & 1) << PA[I]);
+		}
+		uint8_t PermutationIndex = 0;
+		while (RotationPermutations[PermutationIndex][0] != P[0] || RotationPermutations[PermutationIndex][1] != P[1]) {
+			++PermutationIndex;
+		}
+		return GetRotationFromIndex(uint8_t(PermutationIndex * 8 + Signs));
+	}
+
+	// Whether Rotation mirrors the block (MirrorX, MirrorY, MirrorZ and every combination of one of them with turns)
+	constexpr bool IsMirrorRotation(ERotation Rotation)
+	{
+		const uint8_t A = GetRotationIndex(Rotation);
+		const bool OddPermutation = A / 8 == 1 || A / 8 == 2 || A / 8 == 5;
+		const bool OddSigns = (((A >> 0) ^ (A >> 1) ^ (A >> 2)) & 1) != 0;
+		return OddPermutation != OddSigns;
+	}
+
+	// Where the offset Offset (from a block) goes when it is turned by Rotation along with that block. To build a whole structure
+	// turned, set each of its blocks at Origin + RotateOffset(Turn, Offset) with the rotation CombineRotations(its own rotation, Turn).
+	// RotateOffset(Rotation, CoordinateInBlocks(0, 0, 1)) is the direction the top of a block with that rotation faces.
+	constexpr CoordinateInBlocks RotateOffset(ERotation Rotation, CoordinateInBlocks Offset)
+	{
+		const uint8_t A = GetRotationIndex(Rotation);
+		const uint8_t* PA = RotationPermutations[A / 8];
+		const int64_t Local[3] = { Offset.X, Offset.Y, Offset.Z };
+		int64_t World[3] = {};
+		for (int I = 0; I < 3; ++I) {
+			World[I] = ((A >> I) & 1) ? -Local[PA[I]] : Local[PA[I]];
+		}
+		return CoordinateInBlocks(World[0], World[1], int16_t(World[2]));
+	}
 
 	struct BlockInfoWithLocation
 	{

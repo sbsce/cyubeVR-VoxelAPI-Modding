@@ -58,6 +58,11 @@ bool SetBlock(CoordinateInBlocks At, UniqueID CustomBlockID)
 	return SetBlock(At, BlockInfo(CustomBlockID));
 }
 
+bool SetBlock(CoordinateInBlocks At, UniqueID CustomBlockID, ERotation Rotation)
+{
+	return SetBlock(At, BlockInfo(CustomBlockID, Rotation));
+}
+
 
 CoordinateInCentimeters GetPlayerLocation()
 {
