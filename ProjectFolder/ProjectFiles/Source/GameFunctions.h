@@ -520,6 +520,8 @@ namespace ModAPI {
 	typedef SharedMemoryHandleC(*GetSharedMemoryPointer_T)(const wchar_t* Key, bool CreateIfNotExist, bool WaitUntilExist);
 	typedef void (*ReleaseSharedMemoryPointer_T)(ModAPI::SharedMemoryHandleC& Handle);
 
+	typedef void (*DeleteAllTreesInArea_T)(const ModAPI::CoordinateInBlocks& At, const ModAPI::CoordinateInBlocks& BoxExtent);
+
 
 	namespace InternalFunctions {
 
@@ -573,6 +575,8 @@ namespace ModAPI {
 
 		InternalFunction(GetSharedMemoryPointer);
 		InternalFunction(ReleaseSharedMemoryPointer);
+
+		InternalFunction(DeleteAllTreesInArea);
 
 	}
 

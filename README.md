@@ -111,6 +111,8 @@ wString GetThisModGlobalSaveFolderPath(wString ModName);
 GameVersion GetGameVersionNumber();
 
 ScopedSharedMemoryHandle GetSharedMemoryPointer(wString Key, bool CreateIfNotExist, bool WaitUntilExist);
+
+void DeleteAllTreesInArea(CoordinateInBlocks At, CoordinateInBlocks BoxExtent);
 ```
 
 And these are some convenience functions currently available to be called:

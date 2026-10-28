@@ -260,6 +260,16 @@ using namespace ModAPI;
 	std::vector<CoordinateInBlocks> GetAllCoordinatesInRadius(CoordinateInBlocks At, int32_t Radius);	
 
 /*
+*	Delete all trees in a box of blocks: every tree whose trunk stands in a block from At - BoxExtent to At + BoxExtent (inclusive).
+*	Only the big trees, not cacti, desert grass, grass or flowers. Like the other functions, this only works in the chunks that are
+*	currently loaded around the player; trees outside of them stay. The trees disappear in the next game frame and stay deleted
+*	(the world saves it). Game versions older than the one that added this function ignore it (and write that to the log).
+*
+*	Deleting all trees within 20 blocks of the player horizontally and 40 blocks up and down:	DeleteAllTreesInArea(GetPlayerLocation(), CoordinateInBlocks(20, 20, 40));
+*/
+	void DeleteAllTreesInArea(CoordinateInBlocks At, CoordinateInBlocks BoxExtent);
+
+/*
 *	Get a handle to memory that you want to share between multiple different mods. If you don't know what this does, you most likely never need to use it. 
 *	The handle automatically aquires a lock on the memory it points to, and releases it when going out of scope.
 *	ScopedSharedMemoryHandle.Pointer is a reference to a void pointer, which you can cast and set to any type you need.

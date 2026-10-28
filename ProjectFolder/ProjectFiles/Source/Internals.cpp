@@ -78,6 +78,10 @@ void Internals::Init()
 	RegisterFunction(GetSharedMemoryPointer);
 	RegisterFunction(ReleaseSharedMemoryPointer);
 
+	// Functions newer game versions added: optional, so a mod using this project still loads in an older game version (calling one
+	// there only writes to the log)
+	InternalFunctions::I_DeleteAllTreesInArea = (DeleteAllTreesInArea_T) GetProcAddress(app, "DeleteAllTreesInArea");
+
 	std::string ErrorString = GetLastErrorAsString();
 }
 

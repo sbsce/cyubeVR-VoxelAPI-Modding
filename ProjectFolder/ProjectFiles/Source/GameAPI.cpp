@@ -320,6 +320,17 @@ GameVersion GetGameVersionNumber()
 	return VersionNumber;
 }
 
+void DeleteAllTreesInArea(CoordinateInBlocks At, CoordinateInBlocks BoxExtent)
+{
+	// (an older game version does not have it: Internals::Init found no function)
+	if (!InternalFunctions::I_DeleteAllTreesInArea)
+	{
+		Log(L"DeleteAllTreesInArea needs a newer version of cyubeVR, this one does not have it. No trees were deleted.");
+		return;
+	}
+	InternalFunctions::I_DeleteAllTreesInArea(At, BoxExtent);
+}
+
 ScopedSharedMemoryHandle GetSharedMemoryPointer(wString Key, bool CreateIfNotExist, bool WaitUntilExist)
 {
 	return ScopedSharedMemoryHandle(InternalFunctions::I_GetSharedMemoryPointer(Key.c_str(), CreateIfNotExist, WaitUntilExist));
